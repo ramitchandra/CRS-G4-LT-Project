@@ -27,7 +27,7 @@ public class CRSApplication {
 					System.out.println("1. Student");
 					System.out.println("2. Professor");
 					System.out.println("3. Admin");
-					System.out.println("Enter required role option : 1");
+					System.out.println("Enter required role option : ");
 					int roleValue = sc.nextInt();
 					sc.nextLine();
 					furtherRoleHandling(roleValue);
