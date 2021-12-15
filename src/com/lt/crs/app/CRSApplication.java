@@ -14,7 +14,8 @@ public class CRSApplication {
 	public static void main(String[] args) {
 		
 		System.out.println("Welcome to CRS Application");
-		System.out.println("Please select the appropriate option");
+		//Main Menu
+		System.out.println("Main Menu");
 		System.out.println("1. Login");
 		System.out.println("2. New User");
 		System.out.println("3. Update Password");
