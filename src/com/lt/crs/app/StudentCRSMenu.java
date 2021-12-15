@@ -1,5 +1,6 @@
 package com.lt.crs.app;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.lt.crs.bean.Course;
@@ -38,8 +39,8 @@ public class StudentCRSMenu {
 		case 2 :	System.out.println("Available Courses");
 					CourseHandler courseHandler = new CourseHandlerImpl();
 					courseHandler.createCourse();
-					Course[] courseArray = CourseHandlerImpl.courseArray;
-					for(Course course : courseArray) {
+					List<Course> courseList = CourseHandlerImpl.courseList;
+					for(Course course : courseList) {
 						System.out.println(course.getCourseId() + course.getCourseName());
 					}
 					String courseName = sc.nextLine();

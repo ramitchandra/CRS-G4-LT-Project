@@ -1,9 +1,12 @@
 package com.lt.crs.business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.lt.crs.bean.Course;
 
 public class CourseHandlerImpl implements CourseHandler {
-	public static Course[] courseArray = new Course[2];
+	public static List<Course> courseList = new ArrayList<>();
 	
 	public void createCourse() {
 		Course course1 = new Course();
@@ -20,7 +23,7 @@ public class CourseHandlerImpl implements CourseHandler {
 		course2.setOfflieFees(2000);
 		course2.setOnlineFees(1500);
 		
-		courseArray[0] = course1;
-		courseArray[1] = course2;
+		courseList.add(course1);
+		courseList.add(course2);
 	}
 }

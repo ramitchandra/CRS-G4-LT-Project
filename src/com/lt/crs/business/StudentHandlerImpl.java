@@ -1,6 +1,8 @@
 package com.lt.crs.business;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.lt.crs.bean.Course;
@@ -9,10 +11,10 @@ import com.lt.crs.bean.Student;
 
 public class StudentHandlerImpl implements StudentHandler {
 	
-	Student[] studentArray = new Student[2];
+	List<Student> studentList = new ArrayList<>();
 	Map<String, String> studentCred = new HashMap<>();
-	Grades[] studentGrade = new Grades[2];
-	Course[] courseArray = CourseHandlerImpl.courseArray;
+	List<Grades> studentGrade = new ArrayList<>();
+	List<Course> courseList = CourseHandlerImpl.courseList;
 	
 	public void createStudent() {
 		Student student1 = new Student();
@@ -38,8 +40,8 @@ public class StudentHandlerImpl implements StudentHandler {
 		student2.setCourseList(new Course[] {course2});
 		studentCred.put(student2.getStudentName(), student2.getStudentPassword());
 		
-		studentArray[0] = student1;
-		studentArray[1] = student2;
+		studentList.add(student1);
+		studentList.add(student2);
 	}
 	
 	public boolean validateStudent(String username, String password) {
@@ -53,9 +55,9 @@ public class StudentHandlerImpl implements StudentHandler {
 	}
 	
 	public void addCourse(String studentName, String courseName) {
-		for(Student s : studentArray) {
+		for(Student s : studentList) {
 			if(s.getStudentName().equalsIgnoreCase(studentName)) {
-				for(Course course : courseArray) {
+				for(Course course : courseList) {
 					if(course.getCourseName().equalsIgnoreCase(courseName)) {
 						s.setCourseList(new Course[] {course});
 						System.out.println("Course added successfully : " + courseName);
@@ -67,7 +69,7 @@ public class StudentHandlerImpl implements StudentHandler {
 	}
 	
 	public void dropCourse(String studentName, String courseName) {
-		for(Student s : studentArray) {
+		for(Student s : studentList) {
 			if(s.getStudentName().equalsIgnoreCase(studentName)) {
 				s.setCourseList(new Course[] {});
 				System.out.println("Course removed successfully : " + courseName);
@@ -84,8 +86,8 @@ public class StudentHandlerImpl implements StudentHandler {
 		grade2.setStudentName("Stud2");
 		grade2.setStudentGrade('B');
 		
-		studentGrade[0] = grade1;
-		studentGrade[1] = grade2;
+		studentGrade.add(grade1);
+		studentGrade.add(grade2);
 		
 		for(Grades g : studentGrade) {
 			if(g.getStudentName().equalsIgnoreCase(studentName))
@@ -95,7 +97,7 @@ public class StudentHandlerImpl implements StudentHandler {
 	
 	public void payFees(String studentName) {
 		int finalAmount = 0;
-		for(Student s : studentArray) {
+		for(Student s : studentList) {
 			if(s.getStudentName().equalsIgnoreCase(studentName)) {
 				for(Course c : s.getCourseList())
 					finalAmount += c.getOnlineFees();
