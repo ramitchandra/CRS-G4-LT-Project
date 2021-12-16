@@ -13,7 +13,7 @@ public class CRSApplication {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("Welcome to CRS Application");
+		/*.System.out.println("Welcome to CRS Application");
 		//Main Menu
 		System.out.println("Main Menu");
 		System.out.println("1. Login");
@@ -50,7 +50,10 @@ public class CRSApplication {
 		}
 		else {
 			System.out.println("Please enter valid option");
-		}
+		}.*/
+		
+		CourseHandler courseHandler= new CourseHandlerImpl();
+		courseHandler.createCourse();
 	}
 
 	

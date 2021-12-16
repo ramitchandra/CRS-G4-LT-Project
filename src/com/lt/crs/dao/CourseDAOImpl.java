@@ -1,0 +1,39 @@
+package com.lt.crs.dao;
+
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+
+import com.lt.crs.bean.Course;
+import com.lt.crs.utils.DbConnection;
+import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.PreparedStatement;
+
+public class CourseDAOImpl implements CourseDAO {
+	DbConnection dbConn= new DbConnection();
+	@Override
+	public void createCourse(Course course) {
+		// TODO Auto-generated method stub
+		Connection conn=null;
+		PreparedStatement stmt=null ;
+		
+		conn=(Connection) dbConn.createConnection();
+		String sql="insert into course values(?,?,?,?,?)";
+		try {
+			stmt= conn.prepareStatement(sql);
+			stmt.setInt(1, course.getCourseId());  // This would set age
+		      stmt.setString(2,course.getCourseName());
+		      stmt.setBoolean(3, course.isCourseAvailable());
+		      stmt.setInt(4, course.getOfflieFees());
+		      stmt.setInt(5, course.getOnlineFees());
+		      stmt.executeUpdate();
+		      
+		    dbConn.closeConnection(conn);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}

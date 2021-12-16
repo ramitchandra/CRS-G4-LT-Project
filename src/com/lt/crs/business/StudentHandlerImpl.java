@@ -8,6 +8,8 @@ import java.util.Map;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
+import com.lt.crs.dao.StudentDAO;
+import com.lt.crs.dao.StudentDAOImpl;
 
 public class StudentHandlerImpl implements StudentHandler {
 	
@@ -16,17 +18,19 @@ public class StudentHandlerImpl implements StudentHandler {
 	List<Grades> studentGrade = new ArrayList<>();
 	List<Course> courseList = CourseHandlerImpl.courseList;
 	
+	StudentDAO studentDao= new StudentDAOImpl();
+	
 	public void createStudent() {
 		Student student1 = new Student();
 		student1.setStudentId(0001);
-		student1.setstudentEmail("student1@gmail.com");
+		student1.setStudentEmail("student1@gmail.com");
 		student1.setStudentName("Stud1");
 		student1.setStudentPassword("0001");
 		studentCred.put(student1.getStudentName(), student1.getStudentPassword());
 		
 		Student student2 = new Student();
 		student2.setStudentId(0002);
-		student2.setstudentEmail("student2@gmail.com");
+		student2.setStudentEmail("student2@gmail.com");
 		student2.setStudentName("Stud2");
 		student2.setStudentPassword("0002");
 		

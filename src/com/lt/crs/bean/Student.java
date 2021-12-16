@@ -19,12 +19,7 @@ public class Student {
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
-	public String getstudentEmail() {
-		return studentEmail;
-	}
-	public void setstudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
-	}
+
 	public String getStudentPassword() {
 		return studentPassword;
 	}

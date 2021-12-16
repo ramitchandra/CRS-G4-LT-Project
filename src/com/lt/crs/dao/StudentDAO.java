@@ -1,5 +1,8 @@
 package com.lt.crs.dao;
 
-public interface StudentDAO {
+import com.lt.crs.bean.Student;
 
+public interface StudentDAO {
+ public void  createStudent(Student student);
+ public void addCourse(String studentName, String courseName);
 }
