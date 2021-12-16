@@ -33,19 +33,11 @@ public class StudentHandlerImpl implements StudentHandler {
 		student2.setStudentEmail("student2@gmail.com");
 		student2.setStudentName("Stud2");
 		student2.setStudentPassword("0002");
-		
-		Course course2 = new Course();
-		course2.setCourseAvailable(true);
-		course2.setCourseId(1002);
-		course2.setCourseName("Course2");
-		course2.setOfflieFees(2000);
-		course2.setOnlineFees(1500);
-		
-		student2.setCourseList(new Course[] {course2});
 		studentCred.put(student2.getStudentName(), student2.getStudentPassword());
 		
-		studentList.add(student1);
-		studentList.add(student2);
+		
+		studentDao.createStudent(student1);
+		studentDao.createStudent(student2);
 	}
 	
 	public boolean validateStudent(String username, String password) {
@@ -58,28 +50,28 @@ public class StudentHandlerImpl implements StudentHandler {
 		System.out.println("Registered");
 	}
 	
-	public void addCourse(String studentName, String courseName) {
-		for(Student s : studentList) {
-			if(s.getStudentName().equalsIgnoreCase(studentName)) {
-				for(Course course : courseList) {
-					if(course.getCourseName().equalsIgnoreCase(courseName)) {
-						s.setCourseList(new Course[] {course});
-						System.out.println("Course added successfully : " + courseName);
-						return;
-					}
-				}
-			}
-		}
-	}
-	
-	public void dropCourse(String studentName, String courseName) {
-		for(Student s : studentList) {
-			if(s.getStudentName().equalsIgnoreCase(studentName)) {
-				s.setCourseList(new Course[] {});
-				System.out.println("Course removed successfully : " + courseName);
-			}
-		}
-	}
+//	public void addCourse(String studentName, String courseName) {
+//		for(Student s : studentList) {
+//			if(s.getStudentName().equalsIgnoreCase(studentName)) {
+//				for(Course course : courseList) {
+//					if(course.getCourseName().equalsIgnoreCase(courseName)) {
+//						s.setCourseList(new Course[] {course});
+//						System.out.println("Course added successfully : " + courseName);
+//						return;
+//					}
+//				}
+//			}
+//		}
+//	}
+//	
+//	public void dropCourse(String studentName, String courseName) {
+//		for(Student s : studentList) {
+//			if(s.getStudentName().equalsIgnoreCase(studentName)) {
+//				s.setCourseList(new Course[] {});
+//				System.out.println("Course removed successfully : " + courseName);
+//			}
+//		}
+//	}
 	
 	public void viewGrade(String studentName) {
 		Grades grade1 = new Grades();
@@ -99,14 +91,14 @@ public class StudentHandlerImpl implements StudentHandler {
 		}
 	}
 	
-	public void payFees(String studentName) {
-		int finalAmount = 0;
-		for(Student s : studentList) {
-			if(s.getStudentName().equalsIgnoreCase(studentName)) {
-				for(Course c : s.getCourseList())
-					finalAmount += c.getOnlineFees();
-			}
-		}
-		System.out.println("Amount to be paid - " + finalAmount);
-	}
+//	public void payFees(String studentName) {
+//		int finalAmount = 0;
+//		for(Student s : studentList) {
+//			if(s.getStudentName().equalsIgnoreCase(studentName)) {
+//				for(Course c : s.getCourseList())
+//					finalAmount += c.getOnlineFees();
+//			}
+//		}
+//		System.out.println("Amount to be paid - " + finalAmount);
+//	}
 }

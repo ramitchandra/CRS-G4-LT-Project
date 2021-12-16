@@ -1,19 +1,19 @@
 package com.lt.crs.app;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.lt.crs.bean.Course;
-import com.lt.crs.business.CourseHandler;
-import com.lt.crs.business.CourseHandlerImpl;
-import com.lt.crs.business.StudentHandlerImpl;
+import com.lt.crs.constants.CRSConstants;
+import com.lt.crs.validation.LoginValidation;
 
 public class CRSApplication {
 		
 	static Scanner sc = new Scanner(System.in);
+	CRSConstants crsConstants = new CRSConstants();
 	
 	public static void main(String[] args) {
 		
-		/*.System.out.println("Welcome to CRS Application");
+		System.out.println("Welcome to CRS Application");
 		//Main Menu
 		System.out.println("Main Menu");
 		System.out.println("1. Login");
@@ -22,38 +22,38 @@ public class CRSApplication {
 		System.out.println("4. Exit");
 		System.out.println("Enter required option : ");
 		int mainOption = sc.nextInt();
+		sc.nextLine();
 		switch(mainOption) {
-		case 1 : 	System.out.println("Select required role");
-					System.out.println("1. Student");
-					System.out.println("2. Professor");
-					System.out.println("3. Admin");
-					System.out.println("Enter required role option : ");
-					int roleValue = sc.nextInt();
-					sc.nextLine();
-					furtherRoleHandling(roleValue);
+		case 1 :	checkRespectiveRole();
 		}
 		
 	}
 
-	private static void furtherRoleHandling(int roleValue) {		
-		if(roleValue == 1) {
+	private static void checkRespectiveRole() {
+		System.out.println("Enter creadentials");
+		System.out.println("Username");
+		String userName = sc.nextLine();
+		System.out.println("Password");
+		String password = sc.nextLine();
+		LoginValidation lv = new LoginValidation();
+		String role = lv.validateCredentials(userName, password);
+		System.out.println("Logged in " + userName + " as " + role);
+		if(CRSConstants.STUDENT.equalsIgnoreCase(role)) {
 			StudentCRSMenu sm = new StudentCRSMenu();
-			sm.studentLogin();
-		}
-		else if(roleValue == 2){
-			ProfessorCRSMenu pm = new ProfessorCRSMenu();
-			pm.professorLogin();
-		}
-		else if(roleValue == 3) {
+			try {
+				sm.courseRegistration(userName);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else if(CRSConstants.ADMIN.equalsIgnoreCase(role)) {
 			AdminCRSMenu am = new AdminCRSMenu();
 			am.adminLogin();
+		} else if(CRSConstants.PROFESSOR.equalsIgnoreCase(role)) {
+			ProfessorCRSMenu pm = new ProfessorCRSMenu();
+			pm.professorLogin();
+		} else {
+			System.out.println("Invalid Role");
 		}
-		else {
-			System.out.println("Please enter valid option");
-		}.*/
-		
-		CourseHandler courseHandler= new CourseHandlerImpl();
-		courseHandler.createCourse();
 	}
 
 	

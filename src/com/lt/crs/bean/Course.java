@@ -47,7 +47,9 @@ public class Course {
 	public void setEnrollmentCounter(int enrollmentCounter) {
 		this.enrollmentCounter = enrollmentCounter;
 	}
-	
+	public String toString() {
+		return this.courseId + " " + this.courseName;
+	}
 //	public Professor getProfessoreDetails() {
 //		return professoreDetails;
 //	}

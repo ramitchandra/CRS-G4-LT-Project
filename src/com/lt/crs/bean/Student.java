@@ -5,7 +5,6 @@ public class Student {
 	private String studentName;
 	private String studentEmail;
 	private String studentPassword;
-	private Course[] courseList = new Course[6];
 	
 	public int getStudentId() {
 		return studentId;
@@ -31,12 +30,6 @@ public class Student {
 	}
 	public void setStudentEmail(String studentEmail) {
 		this.studentEmail = studentEmail;
-	}
-	public Course[] getCourseList() {
-		return courseList;
-	}
-	public void setCourseList(Course[] courseList) {
-		this.courseList = courseList;
 	}
 	
 	
