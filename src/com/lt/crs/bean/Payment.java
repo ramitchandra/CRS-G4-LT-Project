@@ -4,6 +4,7 @@ public class Payment {
 	private int patmentId;
 	private String paymentMode;
 	private String courseAmount;
+	private int studentId;
 	
 	public int getPatmentId() {
 		return patmentId;
@@ -22,6 +23,12 @@ public class Payment {
 	}
 	public void setCourseAmount(String courseAmount) {
 		this.courseAmount = courseAmount;
+	}
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 	
 }
