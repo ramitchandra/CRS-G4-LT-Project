@@ -1,16 +1,16 @@
 package com.lt.crs.bean;
 
 public class Payment {
-	private int patmentId;
+	private int paymentId;
 	private String paymentMode;
 	private String courseAmount;
 	private int studentId;
 	
-	public int getPatmentId() {
-		return patmentId;
+	public int getPaymentId() {
+		return paymentId;
 	}
-	public void setPatmentId(int patmentId) {
-		this.patmentId = patmentId;
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
 	}
 	public String getPaymentMode() {
 		return paymentMode;
