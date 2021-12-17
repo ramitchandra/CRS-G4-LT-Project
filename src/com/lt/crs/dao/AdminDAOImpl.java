@@ -1,42 +1,90 @@
 package com.lt.crs.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.lt.crs.bean.Student;
+import com.lt.crs.bean.role;
+import com.lt.crs.utils.DbUtils;
+import com.mysql.jdbc.Connection;
+
+
 public class AdminDAOImpl implements AdminDAO {
-	/*DbConnection dbConn= new DbConnection();
-	//@Override
-	public boolean validateUserDao(String username, String password) {
-		// TODO Auto-generated method stub
-		boolean indicator = false;
+	DbUtils dbConn= new DbUtils();
+	public  AdminDAOImpl(role role) {
+		
+		role r1 = new role();
+		r1.setRoleId(101);
+		r1.setRoleName("Admin");
+		
+		role r2 = new role();
+		r2.setRoleId(102);
+		r2.setRoleName("Professor");
+		
+		role r3 = new role();
+		r3.setRoleId(103);
+		r3.setRoleName("Student");
+		
 		Connection conn=null;
 		PreparedStatement stmt=null ;
-		ResultSet rs = null;
 		conn=(Connection) dbConn.createConnection();
-		String sql="select * from admin";
-		//System.out.println(sql);
-		
-			try {
-				stmt= conn.prepareStatement(sql);
-				rs = stmt.executeQuery();
+		String sql="insert into role values(?,?)";
 				
-				while(rs.next()) {
-					if(username.equalsIgnoreCase(rs.getString(1)) && password.equalsIgnoreCase(rs.getString(4))) {
-						indicator = true;
-					}
-					
-					
-				}
-			      
-			   
+			try {
+				  stmt= conn.prepareStatement(sql);
+				  stmt.setInt(1,r1.getRoleId()); 
+			      stmt.setString(2,r1.getRoleName());
+			      stmt.setInt(1,r2.getRoleId()); 
+			      stmt.setString(2,r2.getRoleName());
+			      stmt.setInt(1,r3.getRoleId()); 
+			      stmt.setString(2,r3.getRoleName());
+			      stmt.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//stmt.setInt(1, course.getCourseId());  // This would set age
-			
-		      
+					      
 		    dbConn.closeConnection(conn);
+		    return;
 		
-		    return indicator;
+	}
+	
+	public void userApproval(Student student) {
+		
+	
+		
+		//@Override
+		// TODO Auto-generated method stub
+		Connection conn=null;
+		PreparedStatement stmt=null ;
+		PreparedStatement stmt2=null ;
+		conn=(Connection) dbConn.createConnection();
+		String sql="insert into user values(?,?,?,?,?)";
+		String sql2 = "select id from role where role = 'student'";
+		
+		
+			try {
+				  stmt= conn.prepareStatement(sql);
+				  stmt2= conn.prepareStatement(sql2);
+				  ResultSet rs = stmt2.getResultSet();
+				  stmt.setInt(1,student.getStudentId());  
+			      stmt.setString(2,student.getStudentUsername());
+			      stmt.setString(3, student.getStudentPassword());
+			      while(rs.next()) {
+						 stmt.setInt(4,rs.getInt(1));
+				}
+			      
+			      stmt.setBoolean(5, true);
+			      stmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					      
+		    dbConn.closeConnection(conn);
+		    return;
 
-	}	*/
+	}	
 
 }
