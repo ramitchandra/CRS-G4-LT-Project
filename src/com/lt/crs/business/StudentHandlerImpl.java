@@ -14,6 +14,8 @@ import com.lt.crs.app.MainCRSMenu;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
+import com.lt.crs.dao.AdminDAO;
+import com.lt.crs.dao.AdminDAOImpl;
 import com.lt.crs.dao.StudentDAO;
 import com.lt.crs.dao.StudentDAOImpl;
 import com.mysql.jdbc.Connection;
@@ -85,7 +87,6 @@ public class StudentHandlerImpl implements StudentHandler {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Successfully Registered Student: " +username);
@@ -163,6 +164,9 @@ public class StudentHandlerImpl implements StudentHandler {
 		System.out.println("Registration successful for student : " + student.getStudentName());
 		System.out.println();
 		System.out.println();
+		
+		AdminDAO adminDao = new AdminDAOImpl();
+		adminDao.userApproval(student);
 		
 		MainCRSMenu mainMenu = new MainCRSMenu();
 		mainMenu.mainMenu();
