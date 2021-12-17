@@ -4,7 +4,9 @@ public class Student {
 	private int studentId;
 	private String studentName;
 	private String studentEmail;
+	private String studentUsername;
 	private String studentPassword;
+
 	
 	public int getStudentId() {
 		return studentId;
@@ -19,6 +21,12 @@ public class Student {
 		this.studentName = studentName;
 	}
 
+	public String getStudentUsername() {
+		return studentUsername;
+	}
+	public void setStudentUsername(String studentUsername) {
+		this.studentUsername = studentUsername;
+	}
 	public String getStudentPassword() {
 		return studentPassword;
 	}

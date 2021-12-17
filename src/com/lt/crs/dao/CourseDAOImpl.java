@@ -4,12 +4,12 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
 import com.lt.crs.bean.Course;
-import com.lt.crs.utils.DbConnection;
+import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 //import com.mysql.jdbc.PreparedStatement;
 
 public class CourseDAOImpl implements CourseDAO {
-	DbConnection dbConn= new DbConnection();
+	DbUtils dbConn= new DbUtils();
 	@Override
 	public void createCourse(Course course) {
 		// TODO Auto-generated method stub

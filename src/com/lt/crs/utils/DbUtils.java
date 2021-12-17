@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbConnection {
+public class DbUtils {
 	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
 	static final String DB_URL = "jdbc:mysql://localhost/test";
@@ -18,8 +18,6 @@ public class DbConnection {
 
 		try{			   
 			Class.forName("com.mysql.jdbc.Driver");
-
-			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 		} catch(SQLException se){
 			se.printStackTrace();

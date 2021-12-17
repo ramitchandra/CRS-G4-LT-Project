@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.lt.crs.bean.Payment;
-import com.lt.crs.utils.DbConnection;
+import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
 public abstract class PaymentsDaoImpl implements PaymentsDao {
-	DbConnection dbConn = new DbConnection();
+	DbUtils dbConn = new DbUtils();
 
 	@Override
 	public void makePayment() {
