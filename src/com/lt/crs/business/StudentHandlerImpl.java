@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
+import com.lt.crs.app.MainCRSMenu;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
@@ -22,10 +24,11 @@ public class StudentHandlerImpl implements StudentHandler {
 	Map<String, String> studentCred = new HashMap<>();
 	List<Grades> studentGrade = new ArrayList<>();
 	List<Course> courseList = CourseHandlerImpl.courseList;
+	Scanner sc = new Scanner(System.in);
 	
 	StudentDAO studentDao= new StudentDAOImpl();
 	
-	public void createStudent() {
+	public void createDummyStudent() {
 		Student student1 = new Student();
 		student1.setStudentId(0001);
 		student1.setStudentEmail("student1@gmail.com");
@@ -55,7 +58,7 @@ public class StudentHandlerImpl implements StudentHandler {
 	
 	public void registerForCourse(String username, String courseEnrolled, Connection conn, List<Course> courseList) {
 		PreparedStatement stmt = null;
-		createStudent();
+		createDummyStudent();
 		String sql= "Select studentId,studentName from student where studentUsername=?";
 		String insertEnrolledCourse= "insert into enrolledcourses value (?,?,?,?)";
 		List<String> optCourse=Arrays.asList(courseEnrolled.split(","));
@@ -80,8 +83,6 @@ public class StudentHandlerImpl implements StudentHandler {
 					}
 
 				}
-				//rs= rs.next();
-
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -141,4 +142,29 @@ public class StudentHandlerImpl implements StudentHandler {
 //		}
 //		System.out.println("Amount to be paid - " + finalAmount);
 //	}
+	
+	public void createStudent() {
+		Student student = new Student();
+		System.out.println();
+		System.out.println("Enter StudentId: ");
+		student.setStudentId(sc.nextInt());
+		sc.nextLine();
+		System.out.println("Enter StudentName: ");
+		student.setStudentName(sc.nextLine());
+		System.out.println("Enter StudentUsername: ");
+		student.setStudentUsername(sc.nextLine());
+		System.out.println("Enter StudentEmail: ");
+		student.setStudentEmail(sc.nextLine());
+		System.out.println("Enter StudentPassword: ");
+		student.setStudentPassword(sc.nextLine());
+		
+		studentDao.createStudent(student);
+		System.out.println();
+		System.out.println("Registration successful for student : " + student.getStudentName());
+		System.out.println();
+		System.out.println();
+		
+		MainCRSMenu mainMenu = new MainCRSMenu();
+		mainMenu.mainMenu();
+	}
 }

@@ -1,12 +1,5 @@
 package com.lt.crs.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.lt.crs.utils.DbConnection;
-import com.mysql.jdbc.Connection;
-
 public class AdminDAOImpl implements AdminDAO {
 	/*DbConnection dbConn= new DbConnection();
 	//@Override

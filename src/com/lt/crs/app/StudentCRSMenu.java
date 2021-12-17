@@ -33,35 +33,26 @@ public class StudentCRSMenu {
 		int studentOption = sc.nextInt();
 		sc.nextLine();
 		do{
-		if(studentOption==1) {
-			StudentHandler sh= new StudentHandlerImpl();
-			sh.registerForCourse(username,coursesEnrolled.toString(), conn, courseList);
-		}else if(studentOption==2){
-			
-		studentOption=	addCourseHandling(coursesEnrolled, courseList,studentOption);
-			
-		}else if(studentOption==3){
-			studentOption= dropCourseHandling(coursesEnrolled,studentOption);
-		}else{
-			System.out.println("Invalid Input");
-		}}while(studentOption>0 && studentOption<4);
-	//	retry:
-//		switch(studentOption) {
-//		case 1 : 	StudentHandler sh= new StudentHandlerImpl();
-//					sh.registerForCourse(username,coursesEnrolled.toString(), conn, courseList);
-//			
-//					break;
-//		case 2 :	addCourseHandling(coursesEnrolled, courseList);
-//					break retry;
-//					
-//		case 3 :	dropCourseHandling(coursesEnrolled);
-//					break retry;
-////		case 4 :	sh.viewGrade(username);
-////					break;
-////		case 5 :	sh.payFees(username);
-////					break;
-//		default :	System.out.println("Invalid input");
-//		}
+			if(studentOption==1) {
+				StudentHandler sh= new StudentHandlerImpl();
+				sh.registerForCourse(username,coursesEnrolled.toString(), conn, courseList);
+			}else if(studentOption==2){
+
+				studentOption=	addCourseHandling(coursesEnrolled, courseList,studentOption);
+
+			}else if(studentOption==3){
+				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
+			}else if(studentOption==4){
+//				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
+			}else if(studentOption==5){
+//				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
+			}else if(studentOption==6){
+				MainCRSMenu mainMenu = new MainCRSMenu();
+				mainMenu.mainMenu();
+			}else{
+				System.out.println("Invalid Input");
+			}
+		}while(studentOption>0 && studentOption<4);
 	}
 
 	private int dropCourseHandling(StringBuilder coursesEnrolled,int studentOption) {
@@ -127,5 +118,6 @@ public class StudentCRSMenu {
 		System.out.println("3. Drop Course");
 		System.out.println("4. View Grade");
 		System.out.println("5. Pay Fee");
+		System.out.println("6. Logout");
 	}
 }
