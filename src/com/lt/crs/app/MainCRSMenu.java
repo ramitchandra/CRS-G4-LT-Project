@@ -13,8 +13,8 @@ public class MainCRSMenu {
 	Scanner sc = new Scanner(System.in);
 	
 	public void mainMenu() {
-		System.out.println("\t\t\t\t\t\t\t-----Welcome to CRS Application-----");
-		//Main Menu
+		System.out.println();
+		System.out.println("\t\t\t\t\t\t\t-----WELCOME TO CRS APPLICATION-----");
 		System.out.println();
 		System.out.println("Main Menu");
 		System.out.println("-----------------------------");

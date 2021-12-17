@@ -82,12 +82,23 @@ public class StudentCRSMenu {
 						course.setOnlineFees(rs.getInt("onlineAmount"));
 						courseList.add(course);
 					}
-					System.out.println(courseList);
+					System.out.println();
+					System.out.println("___________________________________________________________________________________________");
+					System.out.format("| %15s | %15s | %15s | %15s | %15s |","CourseId","CourseName","CourseAvaliable","OfflineAmount","OnlineAmount");
+					for(Course c : courseList) {
+						System.out.println();
+						System.out.format("| %15s | %15s | %15s | %15s | %15s |",c.getCourseId(),c.getCourseName(),c.isCourseAvailable(),c.getOfflieFees(),c.getOnlineFees());
+					}
+					System.out.println();
+					System.out.println("___________________________________________________________________________________________");
 					boolean furtherRequired = false;
 					do {
-						System.out.println("Enter courseName");
+						System.out.println();
+						System.out.println();
+						System.out.println("Enter courseName :");
 						String courseName = sc.nextLine();
 						coursesEnrolled.append(courseName);
+						System.out.println();
 						System.out.println("Want to add more course : (y/n)");
 						String input =  sc.nextLine();
 						if("Y".equalsIgnoreCase(input)) {
@@ -99,7 +110,9 @@ public class StudentCRSMenu {
 						}
 						
 					} while (furtherRequired);
-					System.out.println("Courses selected " + coursesEnrolled.toString());
+					System.out.println();
+					System.out.println("Courses selected : " + coursesEnrolled.toString());
+					System.out.println();
 					System.out.println("Select further operation");
 					studentMenu();
 					studentOption = sc.nextInt();

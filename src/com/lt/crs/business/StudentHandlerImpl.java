@@ -87,6 +87,7 @@ public class StudentHandlerImpl implements StudentHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println();
 		System.out.println("Successfully Registered Student: " +username);
 		System.out.println();
 		System.out.println("Select further operation");
