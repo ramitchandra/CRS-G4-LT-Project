@@ -2,11 +2,13 @@ package com.lt.crs.validation;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
 public class LoginValidation {
 	DbUtils dbConn = new DbUtils();
+	
 	public String validateCredentials(String userName, String password) {
 		int roleId = 0 ;
 		String role = null;
@@ -19,7 +21,6 @@ public class LoginValidation {
 		conn=(Connection) dbConn.createConnection();
 		String sql="select * from user";
 		
-		//System.out.println(sql);
 		try {
 			stmt= conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -38,10 +39,8 @@ public class LoginValidation {
 			}
 		}
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//stmt.setInt(1, course.getCourseId()); // This would set age
 		dbConn.closeConnection(conn);
 		if(role.equalsIgnoreCase("Student") && isApproved == true ||role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Professor"))
 		    return role;

@@ -8,7 +8,7 @@ import com.mysql.jdbc.Connection;
 public interface StudentHandler {
 	public void createDummyStudent();
 	public boolean validateStudent(String username, String password);
-	public void registerForCourse(String username, String courseEnrolled, Connection conn,List<Course> courseList);
+	public int registerForCourse(String username, String courseEnrolled, Connection conn,List<Course> courseList, int studentOption);
 //	public void addCourse(String studentName, String courseName);
 //	public void dropCourse(String studentName, String courseName);
 	public void viewGrade(String studentName);

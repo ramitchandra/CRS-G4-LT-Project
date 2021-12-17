@@ -32,7 +32,10 @@ public class MainCRSMenu {
 		case 2 :	newUserCreation();
 					break;
 		case 3 :	updatePassword();
-		case 4 :	System.out.println("Exit");
+					break;
+		case 4 :	System.out.println();
+					System.out.println("Exiting Application");
+					System.exit(0);
 		}
 	}
 	

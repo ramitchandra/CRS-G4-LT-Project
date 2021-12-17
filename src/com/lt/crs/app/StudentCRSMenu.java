@@ -35,11 +35,9 @@ public class StudentCRSMenu {
 		do{
 			if(studentOption==1) {
 				StudentHandler sh= new StudentHandlerImpl();
-				sh.registerForCourse(username,coursesEnrolled.toString(), conn, courseList);
+				studentOption = sh.registerForCourse(username,coursesEnrolled.toString(), conn, courseList,studentOption);				
 			}else if(studentOption==2){
-
 				studentOption=	addCourseHandling(coursesEnrolled, courseList,studentOption);
-
 			}else if(studentOption==3){
 				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
 			}else if(studentOption==4){
@@ -52,7 +50,7 @@ public class StudentCRSMenu {
 			}else{
 				System.out.println("Invalid Input");
 			}
-		}while(studentOption>0 && studentOption<4);
+		}while(studentOption>0 && studentOption<=6);
 	}
 
 	private int dropCourseHandling(StringBuilder coursesEnrolled,int studentOption) {
@@ -87,6 +85,7 @@ public class StudentCRSMenu {
 					System.out.println(courseList);
 					boolean furtherRequired = false;
 					do {
+						System.out.println("Enter courseName");
 						String courseName = sc.nextLine();
 						coursesEnrolled.append(courseName);
 						System.out.println("Want to add more course : (y/n)");
@@ -104,12 +103,11 @@ public class StudentCRSMenu {
 					System.out.println("Select further operation");
 					studentMenu();
 					studentOption = sc.nextInt();
-					System.out.println(studentOption);
 					sc.nextLine();
 					return studentOption;
 				}
 
-	private void studentMenu() {
+	public void studentMenu() {
 		System.out.println();
 		System.out.println("Please select the appropriate option");
 		System.out.println("------------------------------------");

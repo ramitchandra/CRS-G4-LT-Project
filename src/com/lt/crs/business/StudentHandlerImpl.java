@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.lt.crs.app.MainCRSMenu;
+import com.lt.crs.app.StudentCRSMenu;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
@@ -58,9 +59,8 @@ public class StudentHandlerImpl implements StudentHandler {
 		return false;
 	}
 	
-	public void registerForCourse(String username, String courseEnrolled, Connection conn, List<Course> courseList) {
+	public int registerForCourse(String username, String courseEnrolled, Connection conn, List<Course> courseList, int studentOption) {
 		PreparedStatement stmt = null;
-		createDummyStudent();
 		String sql= "Select studentId,studentName from student where studentUsername=?";
 		String insertEnrolledCourse= "insert into enrolledcourses value (?,?,?,?)";
 		List<String> optCourse=Arrays.asList(courseEnrolled.split(","));
@@ -69,9 +69,7 @@ public class StudentHandlerImpl implements StudentHandler {
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
-				System.out.println(rs.getInt("studentId"));
 				for(String s: optCourse){
-					System.out.println(courseList);
 					for(Course c: courseList){
 						if(c.getCourseName().equalsIgnoreCase(s)){
 							stmt= conn.prepareStatement(insertEnrolledCourse);
@@ -90,6 +88,13 @@ public class StudentHandlerImpl implements StudentHandler {
 			e.printStackTrace();
 		}
 		System.out.println("Successfully Registered Student: " +username);
+		System.out.println();
+		System.out.println("Select further operation");
+		StudentCRSMenu menu = new StudentCRSMenu();
+		menu.studentMenu();
+		studentOption = sc.nextInt();
+		sc.nextLine();
+		return studentOption;
 	}
 	
 //	public void addCourse(String studentName, String courseName) {
