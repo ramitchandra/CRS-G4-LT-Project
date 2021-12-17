@@ -4,12 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.lt.crs.utils.DbUtils;
+import com.lt.crs.utils.DbConnection;
 import com.mysql.jdbc.Connection;
 
 public class AdminDAOImpl implements AdminDAO {
-	DbUtils dbConn= new DbUtils();
-	@Override
+	/*DbConnection dbConn= new DbConnection();
+	//@Override
 	public boolean validateUserDao(String username, String password) {
 		// TODO Auto-generated method stub
 		boolean indicator = false;
@@ -44,6 +44,6 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		    return indicator;
 
-	}	
+	}	*/
 
 }

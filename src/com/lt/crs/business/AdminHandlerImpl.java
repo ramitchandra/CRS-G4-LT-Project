@@ -4,13 +4,13 @@ import com.lt.crs.dao.AdminDAOImpl;
 
 public class AdminHandlerImpl implements AdminHandler {
 
-	@Override
+/*	@Override
 	public boolean validateUser(String username,String password) {
 		// TODO Auto-generated method stub
 		AdminDAOImpl ad= new AdminDAOImpl();
 		return ad.validateUserDao(username, password);
 		
-	}
+	}*/
 
 	@Override
 	public void generateReportCard() {
