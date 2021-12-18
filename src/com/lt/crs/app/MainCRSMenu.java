@@ -52,7 +52,7 @@ public class MainCRSMenu {
 		String newPassword = sc.nextLine();
 		
 		LoginValidation lv = new LoginValidation();
-//		lv.updateCredentials(userName, oldPassword, newPassword);
+		lv.updateCredentials(userName, oldPassword, newPassword);
 	}
 
 	private void newUserCreation() {

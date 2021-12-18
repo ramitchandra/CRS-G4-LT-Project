@@ -20,7 +20,7 @@ public class StudentDAOImpl implements StudentDAO {
 		String sql="insert into student values(?,?,?,?,?)";
 		try {
 			stmt= conn.prepareStatement(sql);
-			stmt.setInt(1,student.getStudentId());  // This would set age
+			stmt.setInt(1,student.getStudentId());  
 		      stmt.setString(2,student.getStudentName());
 		      stmt.setString(3, student.getStudentEmail());
 		      stmt.setString(4, student.getStudentPassword());
