@@ -27,8 +27,8 @@ public class StudentCRSMenu {
 		studentMenu();
 		conn=(Connection) dbConn.createConnection();
 		StringBuilder coursesEnrolled = new StringBuilder();
-		CourseHandler courseHandler = new CourseHandlerImpl();
-		courseHandler.createCourse();
+//		CourseHandler courseHandler = new CourseHandlerImpl();
+//		courseHandler.createCourse();
 		List<Course> courseList	= new ArrayList<>();
 		int studentOption = sc.nextInt();
 		sc.nextLine();
