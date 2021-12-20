@@ -3,6 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.lt.crs.app.MainCRSMenu;
 import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
@@ -78,7 +79,8 @@ public class LoginValidation {
 			e.printStackTrace();
 		}
 		dbConn.closeConnection(conn);
-		
+		MainCRSMenu crs= new MainCRSMenu();
+		crs.mainMenu();
 	}
 }
 
