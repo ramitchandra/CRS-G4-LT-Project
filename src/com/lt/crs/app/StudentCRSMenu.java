@@ -42,7 +42,8 @@ public class StudentCRSMenu {
 			}else if(studentOption==3){
 				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
 			}else if(studentOption==4){
-//				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
+				StudentHandler sh= new StudentHandlerImpl();
+				studentOption= sh.viewGrade(username, studentOption);
 			}else if(studentOption==5){
 //				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
 			}else if(studentOption==6){

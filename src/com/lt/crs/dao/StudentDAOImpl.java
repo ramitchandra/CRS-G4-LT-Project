@@ -1,9 +1,11 @@
 package com.lt.crs.dao;
 
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import com.lt.crs.bean.Student;
+import com.lt.crs.business.ProfessorHandler;
+import com.lt.crs.business.ProfessorHandlerImpl;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 //import com.mysql.jdbc.PreparedStatement;
@@ -27,7 +29,8 @@ public class StudentDAOImpl implements StudentDAO {
 		      stmt.setString(5, student.getStudentUsername());
 		      stmt.executeUpdate();
 		      
-		    
+		   ProfessorHandler ph= new ProfessorHandlerImpl();
+		   ph.insertGrade(student.getStudentUsername());
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

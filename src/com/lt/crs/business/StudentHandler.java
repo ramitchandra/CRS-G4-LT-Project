@@ -11,7 +11,7 @@ public interface StudentHandler {
 	public int registerForCourse(String username, String courseEnrolled, Connection conn,List<Course> courseList, int studentOption);
 //	public void addCourse(String studentName, String courseName);
 //	public void dropCourse(String studentName, String courseName);
-	public void viewGrade(String studentName);
+	public int viewGrade(String studentName,int studentOption);
 //	public void payFees(String studentName);
 	public void createStudent();
 }

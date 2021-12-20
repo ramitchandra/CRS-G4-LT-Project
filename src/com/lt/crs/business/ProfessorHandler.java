@@ -1,7 +1,7 @@
 package com.lt.crs.business;
 
 public interface ProfessorHandler {
-	public void addGrades();
-	public void viewEnrolledStudents();
+	public String viewGrades(int studentid);
+	public String insertGrade (String username);
 
 }

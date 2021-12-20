@@ -121,22 +121,26 @@ public class StudentHandlerImpl implements StudentHandler {
 //		}
 //	}
 	
-	public void viewGrade(String studentName) {
-		Grades grade1 = new Grades();
-		grade1.setStudentName("Stud1");
-		grade1.setStudentGrade('A');
-		
-		Grades grade2 = new Grades();
-		grade2.setStudentName("Stud2");
-		grade2.setStudentGrade('B');
-		
-		studentGrade.add(grade1);
-		studentGrade.add(grade2);
-		
-		for(Grades g : studentGrade) {
-			if(g.getStudentName().equalsIgnoreCase(studentName))
-				System.out.println("Grades : " + g.getStudentGrade());
+	public int viewGrade(String studentName,int studentOption) {
+		System.out.println();
+		System.out.println("Please Confirm your StudentID: ");
+		int inputId = sc.nextInt();
+		sc.nextLine();
+		ProfessorHandler ph = new ProfessorHandlerImpl();
+		String gradeResult =ph.viewGrades(inputId);
+		if(gradeResult != null){
+			System.out.println("Your Grade is: "+gradeResult);
+		}else{
+			System.out.println("Invalid studentID");
 		}
+		System.out.println();
+		System.out.println("Select further operation");
+		StudentCRSMenu menu = new StudentCRSMenu();
+		menu.studentMenu();
+		studentOption = sc.nextInt();
+		sc.nextLine();
+		return studentOption;
+		
 	}
 	
 //	public void payFees(String studentName) {

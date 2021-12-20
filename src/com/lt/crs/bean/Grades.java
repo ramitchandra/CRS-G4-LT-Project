@@ -1,14 +1,15 @@
 package com.lt.crs.bean;
 
 public class Grades {
-	private String studentName;
+	private String studentID;
 	private char studentGrade;
 	
-	public String getStudentName() {
-		return studentName;
+	
+	public String getStudentID() {
+		return studentID;
 	}
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
 	}
 	public char getStudentGrade() {
 		return studentGrade;
