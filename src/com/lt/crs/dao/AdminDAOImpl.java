@@ -81,13 +81,12 @@ public class AdminDAOImpl implements AdminDAO {
 
 			stmt.setBoolean(5, true);
 			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally{
+			dbConn.closeConnection(conn);
 		}
-
-		dbConn.closeConnection(conn);
-		return;
-
 	}	
 
 }

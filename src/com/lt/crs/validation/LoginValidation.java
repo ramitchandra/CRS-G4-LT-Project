@@ -42,12 +42,14 @@ public class LoginValidation {
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			dbConn.closeConnection(conn);
 		}
-		dbConn.closeConnection(conn);
 		if(role.equalsIgnoreCase("Student") && isApproved == true ||role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Professor"))
 		    return role;
 		else
 			return null;
+		
 	}
 	
 // This Method is responsible for updating the password for Student/Proff/Admin in user table.	
@@ -77,10 +79,11 @@ public class LoginValidation {
 			}
 		} catch(SQLException e){
 			e.printStackTrace();
-		}
+		}finally{
 		dbConn.closeConnection(conn);
 		MainCRSMenu crs= new MainCRSMenu();
 		crs.mainMenu();
+		}
 	}
 }
 

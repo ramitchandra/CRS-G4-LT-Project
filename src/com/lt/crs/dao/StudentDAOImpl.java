@@ -27,13 +27,14 @@ public class StudentDAOImpl implements StudentDAO {
 		      stmt.setString(5, student.getStudentUsername());
 		      stmt.executeUpdate();
 		      
-		    dbConn.closeConnection(conn);
+		    
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	    
+		} finally{
+			dbConn.closeConnection(conn);
+	    }
 		
 	}
 

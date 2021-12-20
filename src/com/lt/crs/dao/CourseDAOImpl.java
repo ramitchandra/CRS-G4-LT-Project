@@ -27,11 +27,13 @@ public class CourseDAOImpl implements CourseDAO {
 		      stmt.setInt(5, course.getOnlineFees());
 		      stmt.executeUpdate();
 		      
-		    dbConn.closeConnection(conn);
+		    
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			dbConn.closeConnection(conn);
 		}
 		
 	}

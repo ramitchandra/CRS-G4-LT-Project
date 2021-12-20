@@ -52,6 +52,8 @@ public class StudentCRSMenu {
 				System.out.println("Invalid Input");
 			}
 		}while(studentOption>0 && studentOption<=6);
+		sc.close();
+		dbConn.closeConnection(conn);
 	}
 
 	private int dropCourseHandling(StringBuilder coursesEnrolled,int studentOption) {
@@ -74,7 +76,7 @@ public class StudentCRSMenu {
 							throw new CannotDropCourseException("Course does not exist in list, please provide appropriate course");
 					} catch (CannotDropCourseException cdce) {
 						System.out.println(cdce.getMessage());
-						dropCourseHandling(coursesEnrolled,studentOption);
+						return dropCourseHandling(coursesEnrolled,studentOption);
 					}
 					System.out.println();
 					System.out.println("Want to remove more course : (y/n)");
