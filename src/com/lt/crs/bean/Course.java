@@ -50,6 +50,21 @@ public class Course {
 	public String toString() {
 		return this.courseId + " " + this.courseName;
 	}
+	@Override
+    public boolean equals(Object o) {
+ 
+        if (o == this) {
+            return true;
+        }
+ 
+        if (!(o instanceof Course)) {
+            return false;
+        }
+
+        Course c = (Course) o;
+
+        return this.getCourseId() == c.getCourseId();
+    }
 //	public Professor getProfessoreDetails() {
 //		return professoreDetails;
 //	}

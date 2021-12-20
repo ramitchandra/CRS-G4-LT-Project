@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.lt.crs.business.StudentHandler;
 import com.lt.crs.business.StudentHandlerImpl;
 import com.lt.crs.constants.CRSConstants;
+import com.lt.crs.exception.InvalidCourseNameException;
 import com.lt.crs.validation.LoginValidation;
 
 public class MainCRSMenu {
@@ -90,7 +91,9 @@ public class MainCRSMenu {
 				sm.courseRegistration(userName);
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			} catch (InvalidCourseNameException e) {
+				e.printStackTrace();
+			} 
 		} else if(CRSConstants.ADMIN.equalsIgnoreCase(role)) {
 			AdminCRSMenu am = new AdminCRSMenu();
 			am.adminLogin();

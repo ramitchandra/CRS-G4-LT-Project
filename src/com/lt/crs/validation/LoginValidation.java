@@ -20,7 +20,7 @@ public class LoginValidation {
 		PreparedStatement stmt1=null ;
 		ResultSet rs1 = null;
 		conn=(Connection) dbConn.createConnection();
-		String sql="select * from user";
+		String sql=SqlConstants.userQuery;
 		
 		try {
 			stmt= conn.prepareStatement(sql);

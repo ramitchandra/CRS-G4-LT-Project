@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.lt.crs.bean.Course;
-import com.lt.crs.business.CourseHandler;
-import com.lt.crs.business.CourseHandlerImpl;
 import com.lt.crs.business.StudentHandler;
 import com.lt.crs.business.StudentHandlerImpl;
+import com.lt.crs.exception.CannotDropCourseException;
+import com.lt.crs.exception.InvalidCourseNameException;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
@@ -23,7 +23,7 @@ public class StudentCRSMenu {
 	Connection conn= null;
 	PreparedStatement stmt = null;
 	
-	public void courseRegistration(String username) throws SQLException {
+	public void courseRegistration(String username) throws SQLException, InvalidCourseNameException {
 		studentMenu();
 		conn=(Connection) dbConn.createConnection();
 		StringBuilder coursesEnrolled = new StringBuilder();
@@ -55,17 +55,39 @@ public class StudentCRSMenu {
 
 	private int dropCourseHandling(StringBuilder coursesEnrolled,int studentOption) {
 				System.out.println("Course Added: " +coursesEnrolled.toString());
+				boolean furtherRequired = false;
+				do {	
 					System.out.println("Select the courses you want to remove: ");
 					String tobeRemoved=sc.nextLine();
-					coursesEnrolled.replace(coursesEnrolled.indexOf(tobeRemoved)-1, tobeRemoved.length()+ coursesEnrolled.indexOf(tobeRemoved), "");
-					System.out.println("Finally Added Courses: "+coursesEnrolled.toString());			
+					try {
+						if(coursesEnrolled.indexOf(tobeRemoved) != -1) {
+							if(coursesEnrolled.indexOf(tobeRemoved) == 0)
+								coursesEnrolled.replace(coursesEnrolled.indexOf(tobeRemoved), tobeRemoved.length() + 1 + coursesEnrolled.indexOf(tobeRemoved), "");
+							else
+								coursesEnrolled.replace(coursesEnrolled.indexOf(tobeRemoved)-1, tobeRemoved.length()+ coursesEnrolled.indexOf(tobeRemoved), "");
+						}
+						else
+							throw new CannotDropCourseException("Course does not exist in list, please provide appropriate course");
+					} catch (CannotDropCourseException cdce) {
+						System.out.println(cdce.getMessage());
+						dropCourseHandling(coursesEnrolled,studentOption);
+					}
+					System.out.println();
+					System.out.println("Want to remove more course : (y/n)");
+					String input =  sc.nextLine();
+					if("Y".equalsIgnoreCase(input)) {
+						furtherRequired = true;
+					}
+				} while(furtherRequired);
+					
+					System.out.println("Finally selected Courses: "+coursesEnrolled.toString());			
 					studentMenu();
 					studentOption = sc.nextInt();
 					sc.nextLine();
 					return studentOption;
 	}
 
-	private int addCourseHandling(StringBuilder coursesEnrolled, List<Course> courseList,int studentOption) throws SQLException {
+	private int addCourseHandling(StringBuilder coursesEnrolled, List<Course> courseList,int studentOption) throws SQLException, InvalidCourseNameException {
 		
 		System.out.println();
 					System.out.println("Available Courses");
@@ -80,7 +102,8 @@ public class StudentCRSMenu {
 						course.setCourseAvailable(rs.getBoolean("courseAvailable"));
 						course.setOfflieFees(rs.getInt("offlineAmount"));
 						course.setOnlineFees(rs.getInt("onlineAmount"));
-						courseList.add(course);
+						if(!courseList.contains(course))
+							courseList.add(course);
 					}
 					System.out.println();
 					System.out.println("___________________________________________________________________________________________");
@@ -97,7 +120,22 @@ public class StudentCRSMenu {
 						System.out.println();
 						System.out.println("Enter courseName :");
 						String courseName = sc.nextLine();
-						coursesEnrolled.append(courseName);
+						try {
+							int flag = 0;
+							for(Course course : courseList) {
+								if(course.getCourseName().equalsIgnoreCase(courseName)) {
+									coursesEnrolled.append(courseName);
+									flag = 1;
+								}
+									
+							}
+							if(flag == 0)
+								throw new InvalidCourseNameException("Invalid Course Name");
+						} catch (InvalidCourseNameException e) {
+							System.out.println();
+							System.out.println(e.getMessage());
+							addCourseHandling(coursesEnrolled, courseList,studentOption);
+						}
 						System.out.println();
 						System.out.println("Want to add more course : (y/n)");
 						String input =  sc.nextLine();
