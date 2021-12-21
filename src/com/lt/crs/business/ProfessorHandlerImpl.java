@@ -2,11 +2,13 @@ package com.lt.crs.business;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.lt.crs.app.ProfessorCRSMenu;
 import com.lt.crs.constants.EnumGrade;
+import com.lt.crs.exception.InvalidUserNameException;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -57,7 +59,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 			}
 			ps= (PreparedStatement) conn.prepareStatement(sql);
 			ps.setInt(1, studId);
-			ps.setString(2, EnumGrade.valueOf(grade).toString());
+			ps.setString(2, grade);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,6 +73,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 	
 	public int listStudent(int studentOption) {
 		
+		List<String> userNameList = new ArrayList<>();
 		System.out.println();
 		System.out.println("Listing Student for Grading: ");
 		String studIdQuery= "Select * from student where studentId in (select distinct studentId from EnrolledCourses where studentId not in(select distinct studentId from grades))";
@@ -86,18 +89,29 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 			while(rs.next()) {
 				System.out.println();
 				System.out.format("| %15s | %15s |",rs.getInt(1),rs.getString(5));
+				userNameList.add(rs.getString(5));
 			}
 			System.out.println();
 			System.out.println("_____________________________________");
 			boolean looping = false;
 			do {
 				System.out.println();
-				System.out.println("Enter student username you want to provide grade: ");
-				String name = sc.nextLine();
-				System.out.println();
-				System.out.println("Enter grade you want to give: ");
-				String grade = sc.nextLine();
-				insertGrade(name,grade);
+				try {
+					System.out.println("Enter student username you want to provide grade: ");
+					String name = sc.nextLine();
+					if(!userNameList.contains(name))
+						throw new InvalidUserNameException("Enter valid username");
+					System.out.println();
+					System.out.println("Enter grade you want to give: ");
+					String grade = EnumGrade.valueOf(sc.nextLine()).toString();
+					insertGrade(name,grade);
+				} catch (IllegalArgumentException iax) {
+					System.out.println("Please enter valid grade: " + EnumGrade.values().toString());
+					return listStudent(studentOption);
+				} catch (InvalidUserNameException iune) {
+					System.out.println(iune.getMessage());
+					return listStudent(studentOption);
+				}
 				System.out.println("Want to update more grades: (y/n)");
 				String option = sc.nextLine();
 				if("Y".equalsIgnoreCase(option))
