@@ -1,21 +1,46 @@
 package com.lt.crs.app;
 
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
-import com.lt.crs.business.StudentHandlerImpl;
+import com.lt.crs.business.ProfessorHandler;
+import com.lt.crs.business.ProfessorHandlerImpl;
+import com.lt.crs.utils.DbUtils;
+import com.mysql.jdbc.Connection;
 
 public class ProfessorCRSMenu {
-	 Scanner sc = new Scanner(System.in);
-	public void professorLogin() {
-		/*System.out.println("Enter Username/Password");
-		String username = sc.nextLine();
-		String password = sc.nextLine();
-		StudentHandlerImpl sh = new StudentHandlerImpl();
-		sh.createStudent();
-		if(sh.validateStudent(username, password))
-			System.out.println("Validation Success");
-		else
-			System.out.println("Validation Failed");*/
-		System.out.println("Inside ProfessorModule");
+	
+	Scanner sc = new Scanner(System.in);
+	
+	DbUtils dbConn= new DbUtils();
+	Connection conn= null;
+	PreparedStatement stmt = null;
+	
+	public void professorLogin(String username) {
+		professorMenu();
+		conn=(Connection) dbConn.createConnection();
+		int studentOption = sc.nextInt();
+		sc.nextLine();
+		do{
+			if(studentOption==1) {
+				ProfessorHandler ph= new ProfessorHandlerImpl();
+				studentOption = ph.listStudent(studentOption);				
+			}else if(studentOption==2){
+				MainCRSMenu mainMenu = new MainCRSMenu();
+				mainMenu.mainMenu();
+			}else{
+				System.out.println("Invalid Input");
+			}
+		}while(studentOption>0 && studentOption<=6);
+		sc.close();
+		dbConn.closeConnection(conn);
+	}
+	
+	public void professorMenu() {
+		System.out.println();
+		System.out.println("Please select the appropriate option");
+		System.out.println("------------------------------------");
+		System.out.println("1. Update the grades");
+		System.out.println("2. Logout");
 	}
 }

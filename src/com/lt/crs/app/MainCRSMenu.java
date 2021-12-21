@@ -99,7 +99,7 @@ public class MainCRSMenu {
 			am.adminLogin();
 		} else if(CRSConstants.PROFESSOR.equalsIgnoreCase(role)) {
 			ProfessorCRSMenu pm = new ProfessorCRSMenu();
-			pm.professorLogin();
+			pm.professorLogin(userName);
 		} else {
 			System.out.println("Invalid Role");
 		}

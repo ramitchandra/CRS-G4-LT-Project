@@ -30,7 +30,7 @@ public class StudentDAOImpl implements StudentDAO {
 		      stmt.executeUpdate();
 		      
 		   ProfessorHandler ph= new ProfessorHandlerImpl();
-		   ph.insertGrade(student.getStudentUsername());
+//		   ph.insertGrade(student.getStudentUsername());
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
