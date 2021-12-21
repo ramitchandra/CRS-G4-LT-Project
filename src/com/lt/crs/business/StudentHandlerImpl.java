@@ -19,6 +19,7 @@ import com.lt.crs.dao.AdminDAO;
 import com.lt.crs.dao.AdminDAOImpl;
 import com.lt.crs.dao.StudentDAO;
 import com.lt.crs.dao.StudentDAOImpl;
+import com.lt.crs.exception.CourseAlreadyRegisteredException;
 import com.mysql.jdbc.Connection;
 
 public class StudentHandlerImpl implements StudentHandler {
@@ -60,20 +61,54 @@ public class StudentHandlerImpl implements StudentHandler {
 	}
 	
 	public int registerForCourse(String username, String courseEnrolled, Connection conn, List<Course> courseList, int studentOption) {
+
 		PreparedStatement stmt = null;
+		PreparedStatement stmt2 = null;
 		String sql= "Select studentId,studentName from student where studentUsername=?";
+		String sql2= "Select courseName from enrolledcourses where studentName = '"+username+"'";
 		String insertEnrolledCourse= "insert into enrolledcourses value (?,?,?,?)";
 		List<String> optCourse=Arrays.asList(courseEnrolled.split(","));
+		List<String> uptCourse= new ArrayList<String>(optCourse);
+		List<String> removedCourse= new ArrayList<String>();
+		if(courseEnrolled.isEmpty()) {
+			System.out.println("Please add course before registering");
+		}
+		else {
+		try {
+			stmt2= conn.prepareStatement(sql2);
+			ResultSet rs2 = stmt2.executeQuery();
+			while(rs2.next()) {		
+				for(String co: optCourse){
+					if(rs2.getString(1).equalsIgnoreCase(co)) {
+						uptCourse.remove(co);
+						removedCourse.add(co);												
+					}
+				}
+			}
+			String listString = String.join(", ", removedCourse);
+			if(!listString.isEmpty())
+			throw new CourseAlreadyRegisteredException (listString+" Already Registered.");
+			
+		}catch (CourseAlreadyRegisteredException calr) {
+		// TODO Auto-generated catch block
+		 	System.out.println(calr.getMessage());
+			
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		if(!uptCourse.isEmpty()) {
 		try {
 			stmt= conn.prepareStatement(sql);
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
-				for(String s: optCourse){
+				for(String s: uptCourse){
 					for(Course c: courseList){
 						if(c.getCourseName().equalsIgnoreCase(s)){
 							stmt= conn.prepareStatement(insertEnrolledCourse);
-							stmt.setInt(1, rs.getInt("studentId"));  // This would set age
+							stmt.setInt(1, rs.getInt("studentId"));  
 							stmt.setString(2,rs.getString("studentName"));
 							stmt.setInt(3, c.getCourseId());
 							stmt.setString(4, s);
@@ -87,8 +122,15 @@ public class StudentHandlerImpl implements StudentHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		String registerd = String.join(", ", uptCourse);
+
 		System.out.println();
-		System.out.println("Successfully Registered Student: " +username);
+		System.out.println("Courses Registered for Student "+username+ " : "+registerd);
+		}
+		else {
+			System.out.println("Please add other courses");
+		}
+		}
 		System.out.println();
 		System.out.println("Select further operation");
 		StudentCRSMenu menu = new StudentCRSMenu();
@@ -96,6 +138,7 @@ public class StudentHandlerImpl implements StudentHandler {
 		studentOption = sc.nextInt();
 		sc.nextLine();
 		return studentOption;
+	
 	}
 	
 //	public void addCourse(String studentName, String courseName) {
@@ -181,4 +224,6 @@ public class StudentHandlerImpl implements StudentHandler {
 		MainCRSMenu mainMenu = new MainCRSMenu();
 		mainMenu.mainMenu();
 	}
+
+	
 }
