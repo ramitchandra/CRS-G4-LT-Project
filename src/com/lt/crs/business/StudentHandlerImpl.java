@@ -20,6 +20,7 @@ import com.lt.crs.dao.AdminDAOImpl;
 import com.lt.crs.dao.StudentDAO;
 import com.lt.crs.dao.StudentDAOImpl;
 import com.lt.crs.exception.CourseAlreadyRegisteredException;
+import com.lt.crs.exception.NoCourseSelectedException;
 import com.mysql.jdbc.Connection;
 
 public class StudentHandlerImpl implements StudentHandler {
@@ -71,7 +72,14 @@ public class StudentHandlerImpl implements StudentHandler {
 		List<String> uptCourse= new ArrayList<String>(optCourse);
 		List<String> removedCourse= new ArrayList<String>();
 		if(courseEnrolled.isEmpty()) {
-			System.out.println("Please add course before registering");
+			//System.out.println("Please add course before registering");
+			try {
+			throw new NoCourseSelectedException ("Please add course before registering");
+			}
+			catch(NoCourseSelectedException ncs) {
+				
+				System.out.println(ncs.getMessage());
+			}
 		}
 		else {
 		try {
