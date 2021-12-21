@@ -1,5 +1,7 @@
 package com.lt.crs.business;
 
+import com.lt.crs.bean.Student;
+
 public interface AdminHandler {
 
 	//public boolean validateUser(String username, String password);
@@ -8,6 +10,4 @@ public interface AdminHandler {
 	public void approveStudentRegistration();
 	public void addCourse();
 	public void removeCourse();
-	
-
 }

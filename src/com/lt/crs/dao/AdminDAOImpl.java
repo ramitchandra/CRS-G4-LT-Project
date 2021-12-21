@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.lt.crs.bean.Student;
 import com.lt.crs.bean.role;
+import com.lt.crs.exception.AlreadyApprovedException;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
@@ -57,36 +58,29 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 
-	public void userApproval(Student student) {
+	public void userApproval(int  studentId) {
 
 		//@Override
 		Connection conn=null;
+		String sql = null;
 		PreparedStatement stmt=null ;
-		PreparedStatement stmt2=null ;
 		conn=(Connection) dbConn.createConnection();
-		String sql="insert into user values(?,?,?,?,?)";
-		String sql2 = "select id from role where role = 'Student'";
-
-
-		try {
-			stmt= conn.prepareStatement(sql);
-			stmt2= conn.prepareStatement(sql2);
-			ResultSet rs = stmt2.executeQuery();
-			stmt.setInt(1,student.getStudentId());  
-			stmt.setString(2,student.getStudentUsername());
-			stmt.setString(3, student.getStudentPassword());
-			while(rs.next()) {
-				stmt.setInt(4,rs.getInt(1));
+		/*try {
+			 sql="UPDATE user SET isApproved = true WHERE userid = "+studentId;
+			throw new AlreadyApprovedException("enter valid id");
 			}
-
-			stmt.setBoolean(5, true);
-			stmt.executeUpdate();
-			
+			catch(AlreadyApprovedException aae) {
+			System.out.println(aae.getMessage());
+			}*/
+		sql="UPDATE user SET isApproved = true WHERE userid = "+studentId;
+		try {
+		stmt= conn.prepareStatement(sql);
+		stmt.executeUpdate();
+		System.out.println("user id "+studentId+"is approved");
 		} catch (SQLException e) {
-			e.printStackTrace();
+		e.printStackTrace();
 		} finally{
-			dbConn.closeConnection(conn);
+		dbConn.closeConnection(conn);
 		}
-	}	
-
+	}
 }

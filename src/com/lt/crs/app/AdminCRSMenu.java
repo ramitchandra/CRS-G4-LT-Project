@@ -20,7 +20,30 @@ public class AdminCRSMenu {
 		else
 			System.out.println("Validation Failed");
 	}*/
-	System.out.println("Inside Admin Module");
+		System.out.println();
+		System.out.println("Please select the required option");
+		System.out.println("------------------------------------");
+		System.out.println("1. Approve Student Registration");
+		System.out.println("2. Add Professor");
+		System.out.println("3. Add Course");
+		System.out.println("4. Remove Course");
+		System.out.println("5. Generate Report Card");
+		System.out.println("6. Logout");
+		
+		int adminOption = sc.nextInt();
+		sc.nextLine();
+		
+		switch(adminOption)
+		{
+		case 1: AdminHandlerImpl ah= new AdminHandlerImpl();
+		        ah.approveStudentRegistration();
+		         break;
+		case 6: MainCRSMenu mainMenu = new MainCRSMenu();
+		        mainMenu.mainMenu();
+		        break;
+			
+		}
+	
+	
 	}
-
 }

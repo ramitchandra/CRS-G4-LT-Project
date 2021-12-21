@@ -226,8 +226,7 @@ public class StudentHandlerImpl implements StudentHandler {
 		System.out.println();
 		System.out.println();
 		
-		AdminDAO adminDao = new AdminDAOImpl();
-		adminDao.userApproval(student);
+		
 		
 		MainCRSMenu mainMenu = new MainCRSMenu();
 		mainMenu.mainMenu();
