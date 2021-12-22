@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.app.MainCRSMenu;
 import com.lt.crs.app.StudentCRSMenu;
 import com.lt.crs.bean.Course;
@@ -24,6 +26,7 @@ import com.lt.crs.exception.NoCourseSelectedException;
 import com.mysql.jdbc.Connection;
 
 public class StudentHandlerImpl implements StudentHandler {
+	private static Logger logger = Logger.getLogger(StudentHandlerImpl.class);
 	
 	List<Student> studentList = new ArrayList<>();
 	Map<String, String> studentCred = new HashMap<>();
@@ -133,7 +136,7 @@ public class StudentHandlerImpl implements StudentHandler {
 		String registerd = String.join(", ", uptCourse);
 
 		System.out.println();
-		System.out.println("Courses Registered for Student "+username+ " : "+registerd);
+		logger.info("Courses Registered for Student "+username+ " : "+registerd);
 		}
 		else {
 			System.out.println("Please add other courses");
@@ -222,7 +225,7 @@ public class StudentHandlerImpl implements StudentHandler {
 		
 		studentDao.createStudent(student);
 		System.out.println();
-		System.out.println("Registration successful for student : " + student.getStudentName());
+		logger.info("Registration successful for student : " + student.getStudentName());
 		System.out.println();
 		System.out.println();
 		

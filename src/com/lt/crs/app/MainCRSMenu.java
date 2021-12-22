@@ -3,6 +3,8 @@ package com.lt.crs.app;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.business.StudentHandler;
 import com.lt.crs.business.StudentHandlerImpl;
 import com.lt.crs.constants.CRSConstants;
@@ -10,6 +12,7 @@ import com.lt.crs.exception.InvalidCourseNameException;
 import com.lt.crs.validation.LoginValidation;
 
 public class MainCRSMenu {
+	private static Logger logger = Logger.getLogger(MainCRSMenu.class);
 	
 	Scanner sc = new Scanner(System.in);
 	
@@ -84,7 +87,7 @@ public class MainCRSMenu {
 		LoginValidation lv = new LoginValidation();
 		String role = lv.validateCredentials(userName, password);
 		System.out.println();
-		System.out.println("Logged in user \"" + userName + "\" as " + role);
+		logger.info("Logged in user \"" + userName + "\" as " + role);
 		if(CRSConstants.STUDENT.equalsIgnoreCase(role)) {
 			StudentCRSMenu sm = new StudentCRSMenu();
 			try {

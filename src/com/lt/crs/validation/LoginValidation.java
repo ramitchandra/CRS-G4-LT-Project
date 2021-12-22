@@ -3,6 +3,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.app.MainCRSMenu;
 import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
@@ -10,7 +12,7 @@ import com.mysql.jdbc.Connection;
 
 public class LoginValidation {
 	DbUtils dbConn = new DbUtils();
-	
+	private static Logger logger = Logger.getLogger(LoginValidation.class);
 	public String validateCredentials(String userName, String password) {
 		int roleId = 0 ;
 		String role = null;
@@ -21,6 +23,7 @@ public class LoginValidation {
 		PreparedStatement stmt1=null ;
 		ResultSet rs1 = null;
 		conn=(Connection) dbConn.createConnection();
+		logger.debug(conn);
 		String sql=SqlConstants.userQuery;
 		
 		try {
@@ -41,7 +44,7 @@ public class LoginValidation {
 			}
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}finally{
 			dbConn.closeConnection(conn);
 		}
@@ -60,20 +63,25 @@ public class LoginValidation {
 		ResultSet rs= null;
 		
 		conn=(Connection) dbConn.createConnection();
-		String sql=SqlConstants.userQuery;
+		String sql="Select * from user where username=?";
 		try{
 			stmt1= conn.prepareStatement(sql);
+			stmt1.setString(1, username);
 			 rs= stmt1.executeQuery();
 			
 			while(rs.next()){
 				 	if(username.equalsIgnoreCase(rs.getString(2))&& oldPassword.equalsIgnoreCase(rs.getString(3))){
-					String passw = "UPDATE user SET userPassword='"+newPassword+"' WHERE userPassword='"+oldPassword+"' ";
+					String passw = "UPDATE user SET userPassword='"+newPassword+"' WHERE userName='"+username+"' ";
 					stmt2= conn.prepareStatement(passw);
+					
+					stmt2.executeUpdate();
+					String updatestud= "UPDATE student SET studentPassword='"+newPassword+"' WHERE studentUserName='"+username+"' ";
+					stmt2= conn.prepareStatement(updatestud);
 					System.out.println("Password Updated Successfully for: "+username);
 					stmt2.executeUpdate();
-					
 				}else if(!username.equalsIgnoreCase(rs.getString(2))|| !oldPassword.equalsIgnoreCase(rs.getString(3))){
 					System.out.println("Invalid Username or Password");
+					
 				}
 				
 			}

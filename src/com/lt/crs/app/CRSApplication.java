@@ -6,8 +6,8 @@ import com.lt.crs.constants.CRSConstants;
 
 public class CRSApplication {
 		
-	static Scanner sc = new Scanner(System.in);
-	CRSConstants crsConstants = new CRSConstants();
+	//static Scanner sc = new Scanner(System.in);
+	//CRSConstants crsConstants = new CRSConstants();
 	
 	public static void main(String[] args) {
 		

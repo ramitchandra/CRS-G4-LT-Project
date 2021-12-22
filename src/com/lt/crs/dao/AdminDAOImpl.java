@@ -4,59 +4,63 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.bean.Student;
 import com.lt.crs.bean.role;
 import com.lt.crs.exception.AlreadyApprovedException;
 import com.lt.crs.utils.DbUtils;
+import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
 
 
 public class AdminDAOImpl implements AdminDAO {
+	private static Logger logger = Logger.getLogger(AdminDAOImpl.class);
 	
 	DbUtils dbConn= new DbUtils();
 	
-	public  AdminDAOImpl() {
-
-		role r1 = new role();
-		r1.setRoleId(101);
-		r1.setRoleName("Admin");
-
-		role r2 = new role();
-		r2.setRoleId(102);
-		r2.setRoleName("Professor");
-
-		role r3 = new role();
-		r3.setRoleId(103);
-		r3.setRoleName("Student");
-
-		Connection conn=null;
-		PreparedStatement stmt=null ;
-		PreparedStatement stmt1=null ;
-		PreparedStatement stmt2=null ;
-		conn=(Connection) dbConn.createConnection();
-		String sql="insert into role values(?,?)";
-
-		try {
-			stmt= conn.prepareStatement(sql);
-			stmt1= conn.prepareStatement(sql);
-			stmt2= conn.prepareStatement(sql);
-			stmt.setInt(1,r1.getRoleId()); 
-			stmt.setString(2,r1.getRoleName());
-			stmt1.setInt(1,r2.getRoleId()); 
-			stmt1.setString(2,r2.getRoleName());
-			stmt2.setInt(1,r3.getRoleId()); 
-			stmt2.setString(2,r3.getRoleName());
-			stmt.executeUpdate();
-			stmt1.executeUpdate();
-			stmt2.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		dbConn.closeConnection(conn);
-		return;
-
-	}
+//	public  AdminDAOImpl() {
+//
+//		role r1 = new role();
+//		r1.setRoleId(101);
+//		r1.setRoleName("Admin");
+//
+//		role r2 = new role();
+//		r2.setRoleId(102);
+//		r2.setRoleName("Professor");
+//
+//		role r3 = new role();
+//		r3.setRoleId(103);
+//		r3.setRoleName("Student");
+//
+//		Connection conn=null;
+//		PreparedStatement stmt=null ;
+//		PreparedStatement stmt1=null ;
+//		PreparedStatement stmt2=null ;
+//		conn=(Connection) dbConn.createConnection();
+//		String sql="insert into role values(?,?)";
+//
+//		try {
+//			stmt= conn.prepareStatement(sql);
+//			stmt1= conn.prepareStatement(sql);
+//			stmt2= conn.prepareStatement(sql);
+//			stmt.setInt(1,r1.getRoleId()); 
+//			stmt.setString(2,r1.getRoleName());
+//			stmt1.setInt(1,r2.getRoleId()); 
+//			stmt1.setString(2,r2.getRoleName());
+//			stmt2.setInt(1,r3.getRoleId()); 
+//			stmt2.setString(2,r3.getRoleName());
+//			stmt.executeUpdate();
+//			stmt1.executeUpdate();
+//			stmt2.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		dbConn.closeConnection(conn);
+//		return;
+//
+//	}
 
 	public void userApproval(int  studentId) {
 
@@ -76,7 +80,7 @@ public class AdminDAOImpl implements AdminDAO {
 		try {
 		stmt= conn.prepareStatement(sql);
 		stmt.executeUpdate();
-		System.out.println("user id "+studentId+"is approved");
+		logger.info("user id "+studentId+"is approved");
 		} catch (SQLException e) {
 		e.printStackTrace();
 		} finally{
