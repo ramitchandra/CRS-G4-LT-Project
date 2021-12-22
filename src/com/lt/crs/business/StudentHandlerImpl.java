@@ -237,15 +237,13 @@ public class StudentHandlerImpl implements StudentHandler {
 	
 	@Override
 	public int payFees(String username, int studentOption) {
-		PaymentsDao paymentDao = new PaymentsDaoImpl();
-		paymentDao.checkPayment(username);
+		PaymentHandler paymentHandler = new PaymentHandlerImpl();
+		paymentHandler.checkPayment(username);
 		
 		studentOption = sc.nextInt();
-		sc.nextLine();
 		
 		return studentOption;
 		
 	}
-
 	
 }

@@ -1,20 +1,11 @@
 package com.lt.crs.dao;
 
-/**
- * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
- *
- */
+import com.lt.crs.bean.CardDetails;
+
 public interface PaymentsDao {
 	
-	/**
-	 * @param studentUsername
-	 * @param payment
-	 */
-	public void  makePayment(String studentUsername, float payment);
-	
-	/**
-	 * @param studentUsername
-	 */
-	public void checkPayment(String studentUsername);
+	public boolean  makePayment(String studentUsername, String payment);
+	public float checkPayment(String studentUsername);
+	public boolean cardDetails(String studentUsername, CardDetails cardDetails);
 	
 }

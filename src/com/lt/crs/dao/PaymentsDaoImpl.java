@@ -4,74 +4,66 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
-import com.lt.crs.app.StudentCRSMenu;
+import com.lt.crs.bean.CardDetails;
 import com.lt.crs.bean.Payment;
 import com.lt.crs.utils.DbUtils;
 
 public class PaymentsDaoImpl implements PaymentsDao {
-	int result = 0;
+	
 	DbUtils dbConn = new DbUtils();
-	Scanner sc = new Scanner(System.in);
 	Payment payment = new Payment();
 
 	@Override
-	public void makePayment(String studentUsername, float amount) {
-		System.out.println();
-		System.out.println("Please Enter the Amount to be paid: ");
-		String amountToPaid = sc.next();
+	public boolean makePayment(String studentUsername, String amount) {
+
+		int result = 0;
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "insert into payment (paymentMode, courseAmout, studentUsername) values (?,?,?)";
+		String sql1 = "insert into payment (paymentMode, courseAmount, studentUsername) values (?,?,?)";
 		try {
 			stmt = conn.prepareStatement(sql1);
 			stmt.setString(1, "Online");
-			stmt.setString(2, amountToPaid);
+			stmt.setString(2, amount);
 			stmt.setString(3, studentUsername);
 			result = stmt.executeUpdate();
 			if (result == 1) {
-				System.out.println("Payment Successful");
-			} else {
-				System.out.println("Payment Declined");
-			}
+				return true;
+			} 
 			dbConn.closeConnection(conn);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println();
-		System.out.println("Select further operation");
-		StudentCRSMenu menu = new StudentCRSMenu();
-		menu.studentMenu();
+		return false;
 		
 	}
 
-	public void checkPayment(String studentUsername) {
+	public float checkPayment(String studentUsername) {
 		Connection conn = null;
-		PreparedStatement stmt = null;
 		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2 = null;
 
 		int courseId = 0;
 		float courseAmount = 0;
 		float totalAmount = 0;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "select courseId from enrolledcourses where studentname=?";
+		String sql1 = "select courseId from enrolledcourses where studentUsername=?";
 		String sql2 = "SELECT distinct (course.onlineAmount) FROM course inner JOIN enrolledcourses ON course.courseId = ?";
 
 		try {
-			stmt = conn.prepareStatement(sql1);
-			stmt.setString(1, studentUsername);
-			ResultSet rs2 = stmt.executeQuery();
+			stmt1 = conn.prepareStatement(sql1);
+			stmt1.setString(1, studentUsername);
+			ResultSet rs2 = stmt1.executeQuery();
 
 			while (rs2.next()) {
 				courseId = rs2.getInt(1);
 				try {
-					stmt1 = conn.prepareStatement(sql2);
-					stmt1.setInt(1, courseId);
+					stmt2 = conn.prepareStatement(sql2);
+					stmt2.setInt(1, courseId);
 
-					ResultSet rs3 = stmt1.executeQuery();
+					ResultSet rs3 = stmt2.executeQuery();
 
 					while (rs3.next()) {
 
@@ -80,23 +72,50 @@ public class PaymentsDaoImpl implements PaymentsDao {
 
 					}
 
-					stmt1.close();
+					stmt2.close();
 
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}
 			}
 
-			System.out.println();
-			System.out.println("Total Amount to be paid for courses " + totalAmount);
-
-			PaymentsDao payments = new PaymentsDaoImpl();
-			payments.makePayment(studentUsername, totalAmount);
-
-			stmt.close();
+			stmt1.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return totalAmount;
+	}
+
+	@Override
+	public boolean cardDetails(String studentUsername, CardDetails cardDetails) {
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement stmt3 = null;
+		conn = (Connection) dbConn.createConnection();
+		String sql1 = "insert into carddetails values(?,?,?,?)";
+		try {
+			stmt3 = conn.prepareStatement(sql1);
+			stmt3.setString(1, studentUsername);
+			stmt3.setString(2, cardDetails.getCardNumber());
+			stmt3.setString(3, cardDetails.getCardHolderName());
+			stmt3.setString(4, cardDetails.getExpiryDate());
+			result = stmt3.executeUpdate();
+			if (result == 1) {
+				return true;
+			} 
+			dbConn.closeConnection(conn);
+			
+			stmt3.close();
+			conn.close();
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
 	}
 }
