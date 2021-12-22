@@ -17,6 +17,10 @@ import com.lt.crs.exception.InvalidCourseNameException;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class StudentCRSMenu {
 	
 	static Scanner sc = new Scanner(System.in);
@@ -25,6 +29,11 @@ public class StudentCRSMenu {
 	Connection conn= null;
 	PreparedStatement stmt = null;
 	
+	/**
+	 * @param username
+	 * @throws SQLException
+	 * @throws InvalidCourseNameException
+	 */
 	public void courseRegistration(String username) throws SQLException, InvalidCourseNameException {
 		studentMenu();
 		conn=(Connection) dbConn.createConnection();
@@ -59,6 +68,11 @@ public class StudentCRSMenu {
 		dbConn.closeConnection(conn);
 	}
 
+	/**
+	 * @param coursesEnrolled
+	 * @param studentOption
+	 * @return
+	 */
 	private int dropCourseHandling(StringBuilder coursesEnrolled,int studentOption) {
 				System.out.println("Course Added: " +coursesEnrolled.toString());
 				boolean furtherRequired = false;
@@ -96,6 +110,14 @@ public class StudentCRSMenu {
 					return studentOption;
 	}
 
+	/**
+	 * @param coursesEnrolled
+	 * @param courseList
+	 * @param studentOption
+	 * @return
+	 * @throws SQLException
+	 * @throws InvalidCourseNameException
+	 */
 	private int addCourseHandling(StringBuilder coursesEnrolled, List<Course> courseList,int studentOption) throws SQLException, InvalidCourseNameException {
 		
 		System.out.println();
@@ -177,6 +199,9 @@ public class StudentCRSMenu {
 					return studentOption;
 				}
 
+	/**
+	 * 
+	 */
 	public void studentMenu() {
 		System.out.println();
 		System.out.println("Please select the appropriate option");

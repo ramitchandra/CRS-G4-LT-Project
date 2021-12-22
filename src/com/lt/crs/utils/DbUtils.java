@@ -8,9 +8,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class DbUtils {
 	
 	private static Connection connection = null;
+	
+	/**
+	 * @return
+	 */
 	public Connection createConnection() {
 
             try {
@@ -36,6 +44,9 @@ public class DbUtils {
         }
 
 	
+	/**
+	 * @param conn
+	 */
 	public void closeConnection(Connection conn) {
 		try {
 			if(conn != null)

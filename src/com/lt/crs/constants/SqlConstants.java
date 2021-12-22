@@ -1,5 +1,9 @@
 package com.lt.crs.constants;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class SqlConstants {
 	public static final  String userQuery = "select * from user";
 	public static final String roleQuery="select role from role where id =";

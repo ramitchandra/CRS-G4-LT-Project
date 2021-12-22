@@ -2,7 +2,20 @@ package com.lt.crs.dao;
 
 import com.lt.crs.bean.Student;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public interface StudentDAO {
- public void  createStudent(Student student);
- public void addCourse(String studentName, String courseName);
+	
+ /**
+ * @param student
+ */
+public void  createStudent(Student student);
+
+ /**
+ * @param studentName
+ * @param courseName
+ */
+public void addCourse(String studentName, String courseName);
 }
