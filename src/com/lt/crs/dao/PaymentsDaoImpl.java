@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.lt.crs.app.StudentCRSMenu;
 import com.lt.crs.bean.Payment;
 import com.lt.crs.utils.DbUtils;
 
@@ -36,10 +37,15 @@ public class PaymentsDaoImpl implements PaymentsDao {
 				System.out.println("Payment Declined");
 			}
 			dbConn.closeConnection(conn);
-		} catch (SQLException e) {
-// TODO Auto-generated catch block
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println();
+		System.out.println("Select further operation");
+		StudentCRSMenu menu = new StudentCRSMenu();
+		menu.studentMenu();
+		
 	}
 
 	public void checkPayment(String studentUsername) {
@@ -77,19 +83,19 @@ public class PaymentsDaoImpl implements PaymentsDao {
 					stmt1.close();
 
 				} catch (SQLException ex) {
+					ex.printStackTrace();
 				}
 			}
 
 			System.out.println();
 			System.out.println("Total Amount to be paid for courses " + totalAmount);
 
-			PaymentsDao newPaymentsDao = new PaymentsDaoImpl();
-			newPaymentsDao.makePayment(studentUsername, totalAmount);
+			PaymentsDao payments = new PaymentsDaoImpl();
+			payments.makePayment(studentUsername, totalAmount);
 
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
-// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
