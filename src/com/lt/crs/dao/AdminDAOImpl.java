@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.lt.crs.business.NotificationHandler;
 import com.lt.crs.business.NotificationHandlerImpl;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
@@ -73,7 +74,7 @@ public class AdminDAOImpl implements AdminDAO {
 			catch(AlreadyApprovedException aae) {
 			System.out.println(aae.getMessage());
 			}*/
-		sql="UPDATE user SET isApproved = true WHERE userid = "+studentId;
+		sql=SqlConstants.userApprovalQuery+studentId;
 		try {
 		stmt= conn.prepareStatement(sql);
 		stmt.executeUpdate();

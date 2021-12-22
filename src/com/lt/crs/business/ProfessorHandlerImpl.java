@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.lt.crs.app.ProfessorCRSMenu;
 import com.lt.crs.constants.EnumGrade;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.exception.InvalidUserNameException;
 import com.lt.crs.utils.DbUtils;
 import com.lt.crs.validation.LoginValidation;
@@ -29,7 +30,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 	@Override
 	public String viewGrades(int studentid) {
 		try {
-			String sql= "Select studentGrade from grades where studentId=?";
+			String sql= SqlConstants.studentGradeQuery;
 			conn=(Connection) dbConn.createConnection();
 			ps=(PreparedStatement) conn.prepareStatement(sql);
 			ps.setInt(1,studentid );
@@ -50,8 +51,8 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 	@Override
 	public String insertGrade(String studentUsername, String grade) {
 		
-		String sql= "insert into grades values (?,?)";
-		String studIdQuery= "Select studentId from student where studentUsername=?";
+		String sql= SqlConstants.InsertGradeQuery;
+		String studIdQuery= SqlConstants.selectStudentQuery;
 		int studId=0;
 		try {
 			conn=(Connection) dbConn.createConnection();
@@ -80,7 +81,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 		List<String> userNameList = new ArrayList<>();
 		System.out.println();
 		System.out.println("Listing Student for Grading: ");
-		String studIdQuery= "Select * from student where studentId in (select distinct studentId from EnrolledCourses where studentId not in(select distinct studentId from grades))";
+		String studIdQuery= SqlConstants.listStudentQuery;
 		try {
 			conn=(Connection) dbConn.createConnection();
 			ps= (PreparedStatement) conn.prepareStatement(studIdQuery);

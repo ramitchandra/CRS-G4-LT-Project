@@ -17,6 +17,7 @@ import com.lt.crs.app.StudentCRSMenu;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.dao.StudentDAO;
 import com.lt.crs.dao.StudentDAOImpl;
 import com.lt.crs.exception.CourseAlreadyRegisteredException;
@@ -66,9 +67,9 @@ public class StudentHandlerImpl implements StudentHandler {
 
 		PreparedStatement stmt = null;
 		PreparedStatement stmt2 = null;
-		String sql= "Select studentId,studentName from student where studentUsername=?";
-		String sql2= "Select courseName from enrolledcourses where studentName = '"+username+"'";
-		String insertEnrolledCourse= "insert into enrolledcourses value (?,?,?,?)";
+		String sql= SqlConstants.selectStudentdetailsQuery;
+		String sql2= SqlConstants.selectEnrolledCoursesQuery+username+"'";
+		String insertEnrolledCourse= SqlConstants.insertEnrolledCoursesQuery;
 		List<String> optCourse=Arrays.asList(courseEnrolled.split(","));
 		List<String> uptCourse= new ArrayList<String>(optCourse);
 		List<String> removedCourse= new ArrayList<String>();

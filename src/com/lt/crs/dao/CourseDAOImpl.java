@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import java.sql.PreparedStatement;
 
 import com.lt.crs.bean.Course;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
@@ -23,7 +24,7 @@ public class CourseDAOImpl implements CourseDAO {
 		PreparedStatement stmt=null ;
 		
 		conn=(Connection) dbConn.createConnection();
-		String sql="insert into course values(?,?,?,?,?)";
+		String sql=SqlConstants.courseInsertQuery;
 		try {
 			stmt= conn.prepareStatement(sql);
 			stmt.setInt(1, course.getCourseId());  // This would set age

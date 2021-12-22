@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.lt.crs.bean.CardDetails;
 import com.lt.crs.bean.Payment;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.lt.crs.validation.LoginValidation;
 
@@ -26,7 +27,7 @@ public class PaymentsDaoImpl implements PaymentsDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "insert into payment (paymentMode, courseAmout, studentUsername) values (?,?,?)";
+		String sql1 = SqlConstants.insertPaymentQuery;
 		try {
 			stmt = conn.prepareStatement(sql1);
 			stmt.setString(1, "Online");
@@ -53,8 +54,8 @@ public class PaymentsDaoImpl implements PaymentsDao {
 		float courseAmount = 0;
 		float totalAmount = 0;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "select courseId from enrolledcourses where studentName=?";
-		String sql2 = "SELECT distinct (course.onlineAmount) FROM course inner JOIN enrolledcourses ON course.courseId = ?";
+		String sql1 = SqlConstants.selectEnrolledCourseIdQuery;
+		String sql2 = SqlConstants.paymentAmountQuery;
 
 		try {
 			stmt1 = conn.prepareStatement(sql1);
@@ -100,7 +101,7 @@ public class PaymentsDaoImpl implements PaymentsDao {
 		Connection conn = null;
 		PreparedStatement stmt3 = null;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "insert into carddetails values(?,?,?,?)";
+		String sql1 =SqlConstants.insertCardDetailsQuery ;
 		try {
 			stmt3 = conn.prepareStatement(sql1);
 			stmt3.setString(1, studentUsername);

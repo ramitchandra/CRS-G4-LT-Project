@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import com.lt.crs.bean.Student;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
@@ -24,9 +25,9 @@ public class StudentDAOImpl implements StudentDAO {
 		PreparedStatement stmt2 = null;
 		PreparedStatement stmt3 = null;
 		conn=(Connection) dbConn.createConnection();
-		String sql="insert into student values(?,?,?,?,?)";
-		String sql2="insert into user values(?,?,?,?,?)";
-		String sql3 = "select id from role where role = 'Student'";
+		String sql=SqlConstants.studentInsertQuery;
+		String sql2=SqlConstants.courseInsertQuery;
+		String sql3 = SqlConstants.roleIdQuery;
 		try {
 			stmt= conn.prepareStatement(sql);
 			stmt.setInt(1,student.getStudentId());  
@@ -69,7 +70,7 @@ public class StudentDAOImpl implements StudentDAO {
 		PreparedStatement stmt = null;
 		
 		conn=(Connection) dbConn.createConnection();
-		String sql="insert into course values(?,?,?,?,?)";
+		String sql=SqlConstants.courseInsertQuery;
         		
 		
 	}

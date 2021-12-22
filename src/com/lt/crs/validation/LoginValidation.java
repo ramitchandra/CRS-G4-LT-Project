@@ -40,7 +40,7 @@ public class LoginValidation {
 			while(rs.next()) {
 				if(userName.equalsIgnoreCase(rs.getString(2)) && password.equalsIgnoreCase(rs.getString(3))) {
 					roleId = rs.getInt(4);
-					String sql1="select role from role where id ="+roleId;
+					String sql1=SqlConstants.roleQuery+roleId;
 					stmt1= conn.prepareStatement(sql1);
 					rs1 = stmt1.executeQuery();
 					while(rs1.next()) {
@@ -76,7 +76,7 @@ public class LoginValidation {
 		ResultSet rs= null;
 		
 		conn=(Connection) dbConn.createConnection();
-		String sql="Select * from user where username=?";
+		String sql=SqlConstants.selectUserdetailsQuery;
 		try{
 			stmt1= conn.prepareStatement(sql);
 			stmt1.setString(1, username);
@@ -84,11 +84,11 @@ public class LoginValidation {
 			
 			while(rs.next()){
 				 	if(username.equalsIgnoreCase(rs.getString(2))&& oldPassword.equalsIgnoreCase(rs.getString(3))){
-					String passw = "UPDATE user SET userPassword='"+newPassword+"' WHERE userName='"+username+"' ";
+					String passw = SqlConstants.updateUserPasswordQuery+newPassword+"' WHERE userName='"+username+"' ";
 					stmt2= conn.prepareStatement(passw);
 					
 					stmt2.executeUpdate();
-					String updatestud= "UPDATE student SET studentPassword='"+newPassword+"' WHERE studentUserName='"+username+"' ";
+					String updatestud= SqlConstants.updateStudentPasswordQuery+newPassword+"' WHERE studentUserName='"+username+"' ";
 					stmt2= conn.prepareStatement(updatestud);
 					System.out.println("Password Updated Successfully for: "+username);
 					stmt2.executeUpdate();

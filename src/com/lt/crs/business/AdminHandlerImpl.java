@@ -8,6 +8,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.lt.crs.app.AdminCRSMenu;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.dao.AdminDAO;
 import com.lt.crs.dao.AdminDAOImpl;
 import com.lt.crs.utils.DbUtils;
@@ -43,7 +44,7 @@ public class AdminHandlerImpl implements AdminHandler {
 		
 		conn=(Connection) dbConn.createConnection();
 		
-		String sql= "select * from user where isApproved = false";
+		String sql= SqlConstants.pendingApprovalQuery;
 		
 		try {
 			stmt= conn.prepareStatement(sql);
