@@ -12,6 +12,6 @@ public interface StudentHandler {
 //	public void addCourse(String studentName, String courseName);
 //	public void dropCourse(String studentName, String courseName);
 	public int viewGrade(String studentName,int studentOption);
-//	public void payFees(String studentName);
+	public int payFees(String username, int studentOption);
 	public void createStudent();
 }

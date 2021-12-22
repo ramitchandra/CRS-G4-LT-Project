@@ -5,7 +5,14 @@ public class Payment {
 	private String paymentMode;
 	private String courseAmount;
 	private int studentId;
+	private String studentUsername;
 	
+	public String getStudentUsername() {
+		return studentUsername;
+	}
+	public void setStudentUsername(String studentUsername) {
+		this.studentUsername = studentUsername;
+	}
 	public int getPaymentId() {
 		return paymentId;
 	}

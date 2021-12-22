@@ -12,6 +12,7 @@ import com.lt.crs.business.StudentHandler;
 import com.lt.crs.business.StudentHandlerImpl;
 import com.lt.crs.exception.CannotDropCourseException;
 import com.lt.crs.exception.DuplicateCourseNameException;
+//import com.lt.crs.exception.DuplicateCourseNameException;
 import com.lt.crs.exception.InvalidCourseNameException;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
@@ -45,7 +46,8 @@ public class StudentCRSMenu {
 				StudentHandler sh= new StudentHandlerImpl();
 				studentOption= sh.viewGrade(username, studentOption);
 			}else if(studentOption==5){
-//				studentOption= dropCourseHandling(coursesEnrolled,studentOption);
+				StudentHandler sh = new StudentHandlerImpl();
+				studentOption = sh.payFees(username, studentOption);
 			}else if(studentOption==6){
 				MainCRSMenu mainMenu = new MainCRSMenu();
 				mainMenu.mainMenu();

@@ -15,8 +15,8 @@ import com.lt.crs.app.StudentCRSMenu;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
-import com.lt.crs.dao.AdminDAO;
-import com.lt.crs.dao.AdminDAOImpl;
+import com.lt.crs.dao.PaymentsDao;
+import com.lt.crs.dao.PaymentsDaoImpl;
 import com.lt.crs.dao.StudentDAO;
 import com.lt.crs.dao.StudentDAOImpl;
 import com.lt.crs.exception.CourseAlreadyRegisteredException;
@@ -230,6 +230,18 @@ public class StudentHandlerImpl implements StudentHandler {
 		
 		MainCRSMenu mainMenu = new MainCRSMenu();
 		mainMenu.mainMenu();
+	}
+	
+	@Override
+	public int payFees(String username, int studentOption) {
+		PaymentsDao paymentDao = new PaymentsDaoImpl();
+		paymentDao.checkPayment(username);
+		
+		studentOption = sc.nextInt();
+		sc.nextLine();
+		
+		return studentOption;
+		
 	}
 
 	

@@ -5,7 +5,14 @@ public class EnrolledCourses {
 	private String studentName;
 	private int courseId;
 	private String courseName;
+	private String studentUsername;
 	
+	public String getStudentUsername() {
+		return studentUsername;
+	}
+	public void setStudentUsername(String studentUsername) {
+		this.studentUsername = studentUsername;
+	}
 	public int getStudentId() {
 		return studentId;
 	}
