@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import com.lt.crs.business.NotificationHandler;
+import com.lt.crs.business.NotificationHandlerImpl;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
@@ -75,7 +77,9 @@ public class AdminDAOImpl implements AdminDAO {
 		try {
 		stmt= conn.prepareStatement(sql);
 		stmt.executeUpdate();
-		logger.info("user id "+studentId+" is approved");
+		NotificationHandler nh = new NotificationHandlerImpl();
+		nh.approvedNotification(studentId);
+
 		} catch (SQLException e) {
 			logger.error("Error generated"+e.getMessage());
 		} finally{

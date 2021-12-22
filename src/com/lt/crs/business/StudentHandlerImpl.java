@@ -17,8 +17,6 @@ import com.lt.crs.app.StudentCRSMenu;
 import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
-import com.lt.crs.dao.PaymentsDao;
-import com.lt.crs.dao.PaymentsDaoImpl;
 import com.lt.crs.dao.StudentDAO;
 import com.lt.crs.dao.StudentDAOImpl;
 import com.lt.crs.exception.CourseAlreadyRegisteredException;
@@ -143,7 +141,8 @@ public class StudentHandlerImpl implements StudentHandler {
 		String registerd = String.join(", ", uptCourse);
 
 		System.out.println();
-		logger.info("Courses Registered for Student "+username+ " : "+registerd);
+		NotificationHandler nh = new NotificationHandlerImpl();
+		nh.courseRegistrationNotification(username, registerd);
 		}
 		else {
 			System.out.println("Please add other courses");
@@ -232,7 +231,8 @@ public class StudentHandlerImpl implements StudentHandler {
 		
 		studentDao.createStudent(student);
 		System.out.println();
-		logger.info("Registration successful for student : " + student.getStudentName());
+		NotificationHandler nh = new NotificationHandlerImpl();
+		nh.registrationSuccessfulNotification(student.getStudentUsername());
 		System.out.println();
 		System.out.println();
 		

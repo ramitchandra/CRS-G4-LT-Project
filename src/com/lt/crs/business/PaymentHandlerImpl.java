@@ -18,11 +18,11 @@ public class PaymentHandlerImpl implements PaymentHandler {
 		System.out.println();
 		System.out.println("Please Enter the Amount to be paid: ");
 		String amountToPaid = sc.next();
-
+		NotificationHandler nh = new NotificationHandlerImpl();
 		if (paymentsDao.makePayment(studentUsername, amountToPaid)) {
-			System.out.println("Payment successful");
+			nh.registrationSuccessfulNotification(studentUsername);
 		} else {
-			System.out.println("payment Declined");
+			nh.paymentDeclinedNotification(studentUsername);
 		}
 
 		System.out.println();

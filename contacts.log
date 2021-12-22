@@ -44,3 +44,11 @@
 15:32:45,498  INFO MainCRSMenu,main:106 - Logged in user "Prof1" as Professor
 15:33:10,005 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@ea30797
 15:33:10,010  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+18:25:20,424  INFO NotificationHandlerImpl,main:11 - Registration successful for student : Stud1
+18:25:36,334  INFO MainCRSMenu,main:107 - Logged in user "LTI" as Admin at 2021-12-22T18:25:36.331
+18:25:42,970  INFO AdminDAOImpl,main:78 - user id 1 is approved
+18:29:18,421  INFO MainCRSMenu,main:107 - Logged in user "Stud1" as Student at 2021-12-22T18:29:18.421
+18:32:27,054  INFO StudentHandlerImpl,main:144 - Courses Registered for Student Stud1 : Course1
+18:35:53,496  INFO NotificationHandlerImpl,main:11 - Registration successful for student : Stud1
+18:36:06,756  INFO MainCRSMenu,main:107 - Logged in user "Prof1" as Professor at 2021-12-22T18:36:06.755
+18:36:49,046  INFO MainCRSMenu,main:107 - Logged in user "Stud1" as Student at 2021-12-22T18:36:49.046

@@ -1,7 +1,5 @@
 package com.lt.crs.business;
 
-import com.lt.crs.dao.PaymentsDaoImpl;
-
 /**
  * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
  * 
@@ -10,9 +8,35 @@ import com.lt.crs.dao.PaymentsDaoImpl;
  */
 public interface NotificationHandler {
 	/**
-	 * @param paymentsDao
-	 * Send Notification to student after payment.
+	 * @param username
+	 * Send Notification to student after registration.
 	 */
-	public void checkPayment(PaymentsDaoImpl paymentsDao);
-
+	public void registrationSuccessfulNotification(String username);
+	/**
+	 * @param username
+	 * Send Notification to student after payment successful.
+	 */
+	public void paymentSuccessfulNotification(String username);
+	/**
+	 * @param username
+	 * Send Notification to student after payment declined.
+	 */
+	public void paymentDeclinedNotification(String username);
+	/**
+	 * @param studentId
+	 * Send Notification to student after admin approves.
+	 */
+	public void approvedNotification(int studentId);
+	/**
+	 * @param username
+	 * @param role
+	 * Send Notification to user after login.
+	 */
+	public void loginNotification(String username, String role);
+	/**
+	 * @param username
+	 * @param registerd
+	 * Send Notification to student after course registration.
+	 */
+	public void courseRegistrationNotification(String username, String registerd);
 }
