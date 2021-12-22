@@ -1,7 +1,5 @@
 package com.lt.crs.business;
 
-import com.lt.crs.bean.Student;
-
 public interface AdminHandler {
 
 	//public boolean validateUser(String username, String password);

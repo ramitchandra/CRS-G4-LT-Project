@@ -1,16 +1,11 @@
 package com.lt.crs.dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.lt.crs.bean.Student;
-import com.lt.crs.bean.role;
-import com.lt.crs.exception.AlreadyApprovedException;
 import com.lt.crs.utils.DbUtils;
-import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
 
 

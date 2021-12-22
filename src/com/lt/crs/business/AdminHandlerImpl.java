@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.lt.crs.app.AdminCRSMenu;
-import com.lt.crs.bean.Student;
-import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.dao.AdminDAO;
 import com.lt.crs.dao.AdminDAOImpl;
 import com.lt.crs.utils.DbUtils;
@@ -41,7 +39,6 @@ public class AdminHandlerImpl implements AdminHandler {
 	@Override
 	public void approveStudentRegistration() {
 		// TODO Auto-generated method stub
-		boolean isApproved = false;
 		boolean furtherRequired = false;
 		Connection conn=null;
 		PreparedStatement stmt=null ;

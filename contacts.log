@@ -1,1 +1,20 @@
 11:00:03,339 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@497470ed
+12:58:38,615  INFO StudentHandlerImpl,main:228 - Registration successful for student : Stud16
+13:00:13,404 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@61e4705b
+13:00:13,413  INFO MainCRSMenu,main:90 - Logged in user "LTI" as Admin
+13:00:30,905  INFO AdminDAOImpl,main:78 - user id 1is approved
+13:01:09,877  INFO StudentHandlerImpl,main:228 - Registration successful for student : Stud11
+13:01:20,880 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@ba8a1dc
+13:01:20,893  INFO MainCRSMenu,main:90 - Logged in user "LTI" as Admin
+13:01:34,754  INFO AdminDAOImpl,main:78 - user id 11is approved
+13:01:48,304 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@58d25a40
+13:01:48,315  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:02:18,192  INFO StudentHandlerImpl,main:139 - Courses Registered for Student Stud11 : Course1, Course2
+13:03:56,266 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:03:56,331  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:04:57,775 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:04:57,801  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:07:38,196 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:07:38,239  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:08:35,860 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:08:35,904  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student

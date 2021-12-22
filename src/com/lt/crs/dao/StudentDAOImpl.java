@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.lt.crs.bean.Student;
-import com.lt.crs.business.ProfessorHandler;
-import com.lt.crs.business.ProfessorHandlerImpl;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 //import com.mysql.jdbc.PreparedStatement;
