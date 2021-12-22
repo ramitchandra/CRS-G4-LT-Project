@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.lt.crs.bean.Course;
 import com.lt.crs.business.StudentHandler;
 import com.lt.crs.business.StudentHandlerImpl;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.exception.CannotDropCourseException;
 import com.lt.crs.exception.DuplicateCourseNameException;
 //import com.lt.crs.exception.DuplicateCourseNameException;
@@ -123,7 +124,7 @@ public class StudentCRSMenu {
 		System.out.println();
 					System.out.println("Available Courses");
 					System.out.println("-----------------");	
-					String sql = "SELECT * FROM course";
+					String sql = SqlConstants.selectCourseQuery;
 					stmt= conn.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 					while(rs.next()) {

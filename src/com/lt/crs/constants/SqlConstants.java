@@ -28,4 +28,5 @@ public class SqlConstants {
 	public static final String selectUserdetailsQuery ="Select * from user where username=?";
 	public static final String updateUserPasswordQuery ="UPDATE user SET userPassword='";
 	public static final String updateStudentPasswordQuery = "UPDATE student SET studentPassword='";
+	public static final String selectCourseQuery = "SELECT * FROM course";
 }
