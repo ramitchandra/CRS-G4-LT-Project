@@ -52,3 +52,16 @@
 18:35:53,496  INFO NotificationHandlerImpl,main:11 - Registration successful for student : Stud1
 18:36:06,756  INFO MainCRSMenu,main:107 - Logged in user "Prof1" as Professor at 2021-12-22T18:36:06.755
 18:36:49,046  INFO MainCRSMenu,main:107 - Logged in user "Stud1" as Student at 2021-12-22T18:36:49.046
+19:29:03,693 ERROR StudentDAOImpl,main:59 - Error generatedIncorrect integer value: 'ram' for column 'courseAvailable' at row 1
+19:29:03,714  INFO NotificationHandlerImpl,main:13 - Registration successful for student : ram
+19:33:19,239  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-22T19:33:19.237
+19:38:00,877  INFO NotificationHandlerImpl,main:13 - Registration successful for student : ram
+19:38:34,854  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-22T19:38:34.853
+19:38:47,623  INFO NotificationHandlerImpl,main:30 - User id 101 is approved
+19:39:38,781  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T19:39:38.781
+19:40:03,554 ERROR StudentHandlerImpl,main:83 - Error generatedPlease add course before registering
+19:41:39,431  INFO NotificationHandlerImpl,main:42 - Courses Registered for Student ram : course1, course2
+19:44:08,776  INFO NotificationHandlerImpl,main:13 - Registration successful for student : ram
+19:46:01,662  INFO NotificationHandlerImpl,main:36 - Logged in user "prof1" as Professor at 2021-12-22T19:46:01.659
+19:46:19,719 ERROR ProfessorHandlerImpl,main:117 - Error generatedEnter valid username
+19:47:41,827  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T19:47:41.827

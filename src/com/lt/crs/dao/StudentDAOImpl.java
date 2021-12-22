@@ -26,7 +26,7 @@ public class StudentDAOImpl implements StudentDAO {
 		PreparedStatement stmt3 = null;
 		conn=(Connection) dbConn.createConnection();
 		String sql=SqlConstants.studentInsertQuery;
-		String sql2=SqlConstants.courseInsertQuery;
+		String sql2=SqlConstants.userInsertQuery;
 		String sql3 = SqlConstants.roleIdQuery;
 		try {
 			stmt= conn.prepareStatement(sql);
