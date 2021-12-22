@@ -18,3 +18,29 @@
 13:07:38,239  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
 13:08:35,860 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
 13:08:35,904  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:20:43,049  INFO StudentHandlerImpl,main:228 - Registration successful for student : Stud21
+13:20:48,893 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@61e4705b
+13:20:48,908  INFO MainCRSMenu,main:90 - Logged in user "LTI" as Admin
+13:21:01,807  INFO AdminDAOImpl,main:78 - user id 21is approved
+13:21:19,533 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@1a93a7ca
+13:21:19,538  INFO MainCRSMenu,main:90 - Logged in user "Stud21" as Student
+13:22:12,990  INFO StudentHandlerImpl,main:139 - Courses Registered for Student Stud21 : Course1, Course3
+13:22:50,586 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@ee7d9f1
+13:22:50,592  INFO MainCRSMenu,main:90 - Logged in user "Prof1" as Professor
+13:23:21,368 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@379619aa
+13:23:21,374  INFO MainCRSMenu,main:90 - Logged in user "Stud21" as Student
+15:24:56,606  INFO StudentHandlerImpl,main:228 - Registration successful for student : JL
+15:25:05,339 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@61e4705b
+15:25:05,351  INFO MainCRSMenu,main:106 - Logged in user "LTI" as Admin
+15:25:20,413  INFO AdminDAOImpl,main:78 - user id 31is approved
+15:25:44,657 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@1a93a7ca
+15:25:44,663  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+15:25:56,555  INFO StudentHandlerImpl,main:139 - Courses Registered for Student JL : Course1
+15:28:05,365 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+15:28:05,406  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+15:31:40,522 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+15:31:40,587  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+15:32:45,490 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@6ae40994
+15:32:45,498  INFO MainCRSMenu,main:106 - Logged in user "Prof1" as Professor
+15:33:10,005 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@ea30797
+15:33:10,010  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student

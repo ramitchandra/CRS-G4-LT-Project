@@ -5,11 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.bean.CardDetails;
 import com.lt.crs.bean.Payment;
 import com.lt.crs.utils.DbUtils;
+import com.lt.crs.validation.LoginValidation;
 
 public class PaymentsDaoImpl implements PaymentsDao {
+	private static Logger logger = Logger.getLogger(PaymentsDaoImpl.class);
 	
 	DbUtils dbConn = new DbUtils();
 	Payment payment = new Payment();
@@ -22,7 +26,7 @@ public class PaymentsDaoImpl implements PaymentsDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "insert into payment (paymentMode, courseAmount, studentUsername) values (?,?,?)";
+		String sql1 = "insert into payment (paymentMode, courseAmout, studentUsername) values (?,?,?)";
 		try {
 			stmt = conn.prepareStatement(sql1);
 			stmt.setString(1, "Online");
@@ -34,7 +38,7 @@ public class PaymentsDaoImpl implements PaymentsDao {
 			} 
 			dbConn.closeConnection(conn);
 		}catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}
 		return false;
 		
@@ -49,7 +53,7 @@ public class PaymentsDaoImpl implements PaymentsDao {
 		float courseAmount = 0;
 		float totalAmount = 0;
 		conn = (Connection) dbConn.createConnection();
-		String sql1 = "select courseId from enrolledcourses where studentUsername=?";
+		String sql1 = "select courseId from enrolledcourses where studentName=?";
 		String sql2 = "SELECT distinct (course.onlineAmount) FROM course inner JOIN enrolledcourses ON course.courseId = ?";
 
 		try {
@@ -75,14 +79,14 @@ public class PaymentsDaoImpl implements PaymentsDao {
 					stmt2.close();
 
 				} catch (SQLException ex) {
-					ex.printStackTrace();
+					logger.error("Error generated"+ex.getMessage());
 				}
 			}
 
 			stmt1.close();
 			conn.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}
 		
 		return totalAmount;
@@ -113,7 +117,7 @@ public class PaymentsDaoImpl implements PaymentsDao {
 			conn.close();
 			
 		}catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}
 		return false;
 		

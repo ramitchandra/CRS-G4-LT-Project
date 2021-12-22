@@ -1,14 +1,20 @@
 package com.lt.crs.dao;
 
 import java.sql.SQLException;
+
+import org.apache.log4j.Logger;
+
 import java.sql.PreparedStatement;
 
 import com.lt.crs.bean.Course;
 import com.lt.crs.utils.DbUtils;
+import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
 //import com.mysql.jdbc.PreparedStatement;
 
 public class CourseDAOImpl implements CourseDAO {
+	private static Logger logger = Logger.getLogger(CourseDAOImpl.class);
+	
 	DbUtils dbConn= new DbUtils();
 	@Override
 	public void createCourse(Course course) {
@@ -31,7 +37,7 @@ public class CourseDAOImpl implements CourseDAO {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		} finally{
 			dbConn.closeConnection(conn);
 		}

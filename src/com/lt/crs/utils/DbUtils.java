@@ -8,11 +8,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
+import com.lt.crs.validation.LoginValidation;
+
 /**
  * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
  *
  */
 public class DbUtils {
+	
+	private static Logger logger = Logger.getLogger(DbUtils.class);
 	
 	private static Connection connection = null;
 	
@@ -32,13 +38,13 @@ public class DbUtils {
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            	logger.error("Error generated"+e.getMessage());
             } catch (SQLException e) {
-                e.printStackTrace();
+            	logger.error("Error generated"+e.getMessage());
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            	logger.error("Error generated"+e.getMessage());
             } catch (IOException e) {
-                e.printStackTrace();
+            	logger.error("Error generated"+e.getMessage());
             }
             return connection;
         }

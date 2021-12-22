@@ -6,14 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.app.ProfessorCRSMenu;
 import com.lt.crs.constants.EnumGrade;
 import com.lt.crs.exception.InvalidUserNameException;
 import com.lt.crs.utils.DbUtils;
+import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 public class ProfessorHandlerImpl implements ProfessorHandler {
+	private static Logger logger = Logger.getLogger(ProfessorHandlerImpl.class);
 	
 	static Scanner sc = new Scanner(System.in);
 	
@@ -36,7 +40,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}finally{
 			dbConn.closeConnection(conn);
 		}
@@ -63,7 +67,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}finally{
 			dbConn.closeConnection(conn);
 		}
@@ -106,10 +110,10 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 					String grade = EnumGrade.valueOf(sc.nextLine()).toString();
 					insertGrade(name,grade);
 				} catch (IllegalArgumentException iax) {
-					System.out.println("Please enter valid grade: " + EnumGrade.values().toString());
+					logger.error("Please enter valid grade: " + EnumGrade.values().toString());
 					return listStudent(studentOption);
 				} catch (InvalidUserNameException iune) {
-					System.out.println(iune.getMessage());
+					logger.error("Error generated"+iune.getMessage());
 					return listStudent(studentOption);
 				}
 				System.out.println("Want to update more grades: (y/n)");
@@ -124,7 +128,7 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 			studentOption = sc.nextInt();
 			sc.nextLine();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		} finally {
 			dbConn.closeConnection(conn);
 		}

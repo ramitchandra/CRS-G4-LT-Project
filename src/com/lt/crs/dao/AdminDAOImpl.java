@@ -75,9 +75,9 @@ public class AdminDAOImpl implements AdminDAO {
 		try {
 		stmt= conn.prepareStatement(sql);
 		stmt.executeUpdate();
-		logger.info("user id "+studentId+"is approved");
+		logger.info("user id "+studentId+" is approved");
 		} catch (SQLException e) {
-		e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		} finally{
 		dbConn.closeConnection(conn);
 		}

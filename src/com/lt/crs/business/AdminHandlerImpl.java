@@ -5,25 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.lt.crs.app.AdminCRSMenu;
 import com.lt.crs.dao.AdminDAO;
 import com.lt.crs.dao.AdminDAOImpl;
 import com.lt.crs.utils.DbUtils;
+import com.lt.crs.validation.LoginValidation;
 import com.mysql.jdbc.Connection;
 
 public class AdminHandlerImpl implements AdminHandler {
+	private static Logger logger = Logger.getLogger(AdminHandlerImpl.class);
 
 	DbUtils dbConn = new DbUtils();
 	static Scanner sc = new Scanner(System.in);
 	
-/*	@Override
-	public boolean validateUser(String username,String password) {
-		// TODO Auto-generated method stub
-		AdminDAOImpl ad= new AdminDAOImpl();
-		return ad.validateUserDao(username, password);
-		
-	}*/
-
 	@Override
 	public void generateReportCard() {
 		// TODO Auto-generated method stub
@@ -35,6 +31,7 @@ public class AdminHandlerImpl implements AdminHandler {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public void approveStudentRegistration() {
@@ -87,7 +84,7 @@ public class AdminHandlerImpl implements AdminHandler {
 				ad.adminLogin();
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}finally{
 			dbConn.closeConnection(conn);
 		}

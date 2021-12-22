@@ -32,7 +32,6 @@ public class LoginValidation {
 		PreparedStatement stmt1=null ;
 		ResultSet rs1 = null;
 		conn=(Connection) dbConn.createConnection();
-		logger.debug(conn);
 		String sql=SqlConstants.userQuery;
 		
 		try {
@@ -100,7 +99,7 @@ public class LoginValidation {
 				
 			}
 		} catch(SQLException e){
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}finally{
 		dbConn.closeConnection(conn);
 		MainCRSMenu crs= new MainCRSMenu();

@@ -81,7 +81,7 @@ public class StudentHandlerImpl implements StudentHandler {
 			}
 			catch(NoCourseSelectedException ncs) {
 				
-				System.out.println(ncs.getMessage());
+				logger.error("Error generated"+ncs.getMessage());
 			}
 		}
 		else {
@@ -102,12 +102,12 @@ public class StudentHandlerImpl implements StudentHandler {
 			
 		}catch (CourseAlreadyRegisteredException calr) {
 		// TODO Auto-generated catch block
-		 	System.out.println(calr.getMessage());
+			logger.error("Error generated"+calr.getMessage());
 			
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		} 
 		if(!uptCourse.isEmpty()) {
 		try {
@@ -131,7 +131,7 @@ public class StudentHandlerImpl implements StudentHandler {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Error generated"+e.getMessage());
 		}
 		String registerd = String.join(", ", uptCourse);
 
