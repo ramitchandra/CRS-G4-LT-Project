@@ -11,11 +11,18 @@ import com.lt.crs.constants.CRSConstants;
 import com.lt.crs.exception.InvalidCourseNameException;
 import com.lt.crs.validation.LoginValidation;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class MainCRSMenu {
 	private static Logger logger = Logger.getLogger(MainCRSMenu.class);
 	
 	Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * 
+	 */
 	public void mainMenu() {
 		System.out.println();
 		System.out.println("\t\t\t\t\t\t\t-----WELCOME TO CRS APPLICATION-----");
@@ -43,6 +50,9 @@ public class MainCRSMenu {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void updatePassword() {
 		
 		System.out.println();
@@ -59,6 +69,9 @@ public class MainCRSMenu {
 		lv.updateCredentials(userName, oldPassword, newPassword);
 	}
 
+	/**
+	 * 
+	 */
 	private void newUserCreation() {
 		System.out.println();
 		System.out.println("Please provide type of user: (Student/Professor/Admin)");
@@ -76,6 +89,9 @@ public class MainCRSMenu {
 		
 	}
 
+	/**
+	 * 
+	 */
 	private void checkRespectiveRole() {
 		System.out.println();
 		System.out.println("Enter creadentials");

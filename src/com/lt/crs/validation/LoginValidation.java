@@ -10,9 +10,18 @@ import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class LoginValidation {
 	DbUtils dbConn = new DbUtils();
 	private static Logger logger = Logger.getLogger(LoginValidation.class);
+	/**
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	public String validateCredentials(String userName, String password) {
 		int roleId = 0 ;
 		String role = null;
@@ -56,6 +65,11 @@ public class LoginValidation {
 	}
 	
 // This Method is responsible for updating the password for Student/Proff/Admin in user table.	
+	/**
+	 * @param username
+	 * @param oldPassword
+	 * @param newPassword
+	 */
 	public void updateCredentials(String username, String oldPassword, String newPassword){
 		Connection conn= null;
 		PreparedStatement stmt1 = null;

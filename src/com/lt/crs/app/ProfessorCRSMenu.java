@@ -8,6 +8,10 @@ import com.lt.crs.business.ProfessorHandlerImpl;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class ProfessorCRSMenu {
 	
 	Scanner sc = new Scanner(System.in);
@@ -16,6 +20,9 @@ public class ProfessorCRSMenu {
 	Connection conn= null;
 	PreparedStatement stmt = null;
 	
+	/**
+	 * @param username
+	 */
 	public void professorLogin(String username) {
 		professorMenu();
 		conn=(Connection) dbConn.createConnection();
@@ -36,6 +43,9 @@ public class ProfessorCRSMenu {
 		dbConn.closeConnection(conn);
 	}
 	
+	/**
+	 * 
+	 */
 	public void professorMenu() {
 		System.out.println();
 		System.out.println("Please select the appropriate option");

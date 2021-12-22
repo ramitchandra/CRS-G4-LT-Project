@@ -4,21 +4,18 @@ import java.util.Scanner;
 
 import com.lt.crs.business.AdminHandlerImpl;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Venisraj,Vignesh
+ *
+ */
 public class AdminCRSMenu {
 
 	Scanner sc = new Scanner(System.in);
+	/**
+	 * 
+	 */
 	public void adminLogin() {
-	/*System.out.println("Enter Username/Password");
-		String username = sc.nextLine();
-		String password = sc.nextLine();
-		AdminHandlerImpl sh = new AdminHandlerImpl();
-		sh.validateUser(username, password);
-		sh.createStudent();
-		if(sh.validateUser(username, password))
-			System.out.println("Validation Success");
-		else
-			System.out.println("Validation Failed");
-	}*/
+	
 		System.out.println();
 		System.out.println("Please select the required option");
 		System.out.println("------------------------------------");
@@ -31,12 +28,19 @@ public class AdminCRSMenu {
 		
 		int adminOption = sc.nextInt();
 		sc.nextLine();
-		
+		AdminHandlerImpl ah= new AdminHandlerImpl();
 		switch(adminOption)
 		{
-		case 1: AdminHandlerImpl ah= new AdminHandlerImpl();
-		        ah.approveStudentRegistration();
+		case 1:  ah.approveStudentRegistration();
 		         break;
+		case 2:  ah.addProfessor();
+        		 break; 
+		case 3:  ah.addCourse();
+		 		 break;	
+		case 4:  ah.removeCourse();
+		 		 break;
+		case 5:  ah.generateReportCard();
+		 		 break;		 
 		case 6: MainCRSMenu mainMenu = new MainCRSMenu();
 		        mainMenu.mainMenu();
 		        break;
