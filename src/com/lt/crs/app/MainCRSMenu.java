@@ -1,6 +1,7 @@
 package com.lt.crs.app;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -103,7 +104,7 @@ public class MainCRSMenu {
 		LoginValidation lv = new LoginValidation();
 		String role = lv.validateCredentials(userName, password);
 		System.out.println();
-		logger.info("Logged in user \"" + userName + "\" as " + role);
+		logger.info("Logged in user \"" + userName + "\" as " + role + " at " + LocalDateTime.now());
 		if(CRSConstants.STUDENT.equalsIgnoreCase(role)) {
 			StudentCRSMenu sm = new StudentCRSMenu();
 			try {

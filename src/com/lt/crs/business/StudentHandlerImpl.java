@@ -89,12 +89,16 @@ public class StudentHandlerImpl implements StudentHandler {
 			stmt2= conn.prepareStatement(sql2);
 			ResultSet rs2 = stmt2.executeQuery();
 			while(rs2.next()) {		
-				for(String co: optCourse){
-					if(rs2.getString(1).equalsIgnoreCase(co)) {
-						uptCourse.remove(co);
-						removedCourse.add(co);												
+				optCourse.forEach(co->{
+					try {
+						if(rs2.getString(1).equalsIgnoreCase(co)) {
+							uptCourse.remove(co);
+							removedCourse.add(co);
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
 					}
-				}
+				});
 			}
 			String listString = String.join(", ", removedCourse);
 			if(!listString.isEmpty())
@@ -115,20 +119,23 @@ public class StudentHandlerImpl implements StudentHandler {
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
-				for(String s: uptCourse){
-					for(Course c: courseList){
+				uptCourse.forEach(s-> {
+					courseList.forEach(c->{
 						if(c.getCourseName().equalsIgnoreCase(s)){
-							stmt= conn.prepareStatement(insertEnrolledCourse);
-							stmt.setInt(1, rs.getInt("studentId"));  
-							stmt.setString(2,rs.getString("studentName"));
-							stmt.setInt(3, c.getCourseId());
-							stmt.setString(4, s);
-							stmt.executeUpdate();
-
+							try {
+								PreparedStatement stmt3 = null;
+								stmt3= conn.prepareStatement(insertEnrolledCourse);
+								stmt3.setInt(1, rs.getInt("studentId"));
+								stmt3.setString(2,rs.getString("studentName"));
+								stmt3.setInt(3, c.getCourseId());
+								stmt3.setString(4, s);
+								stmt3.executeUpdate();
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-
-				}
+					});
+				});
 			}
 		} catch (SQLException e) {
 			logger.error("Error generated"+e.getMessage());
