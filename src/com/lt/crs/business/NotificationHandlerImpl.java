@@ -43,5 +43,10 @@ public class NotificationHandlerImpl implements NotificationHandler{
 		
 	}
 
+	@Override
+	public void updatePasswordNotification(String username) {
+		logger.info("Password Updated Successfully for: "+username);
+	}
+
 	
 }

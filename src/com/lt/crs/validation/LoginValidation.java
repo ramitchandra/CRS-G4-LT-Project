@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import com.lt.crs.app.MainCRSMenu;
+import com.lt.crs.business.NotificationHandler;
+import com.lt.crs.business.NotificationHandlerImpl;
 import com.lt.crs.constants.SqlConstants;
 import com.lt.crs.utils.DbUtils;
 import com.mysql.jdbc.Connection;
@@ -90,7 +92,8 @@ public class LoginValidation {
 					stmt2.executeUpdate();
 					String updatestud= SqlConstants.updateStudentPasswordQuery+newPassword+"' WHERE studentUserName='"+username+"' ";
 					stmt2= conn.prepareStatement(updatestud);
-					System.out.println("Password Updated Successfully for: "+username);
+					NotificationHandler nh = new NotificationHandlerImpl();
+					nh.updatePasswordNotification(username);
 					stmt2.executeUpdate();
 				}else if(!username.equalsIgnoreCase(rs.getString(2))|| !oldPassword.equalsIgnoreCase(rs.getString(3))){
 					System.out.println("Invalid Username or Password");

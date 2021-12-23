@@ -67,3 +67,15 @@
 19:47:41,827  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T19:47:41.827
 22:16:25,043  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T22:16:25.039
 22:18:01,144  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T22:18:01.142
+09:18:23,284 ERROR StudentDAOImpl,main:59 - Error generatedDuplicate entry '1' for key 1
+09:18:23,301  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Ramit
+09:19:28,417 ERROR StudentDAOImpl,main:59 - Error generatedDuplicate entry '1' for key 1
+09:19:28,420  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Ramit
+09:21:20,003  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Ramit
+09:21:28,538  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-23T09:21:28.537
+09:21:36,332  INFO NotificationHandlerImpl,main:30 - User id 1 is approved
+09:21:51,910  INFO NotificationHandlerImpl,main:36 - Logged in user "Ramit" as Student at 2021-12-23T09:21:51.910
+09:22:36,448  INFO NotificationHandlerImpl,main:42 - Courses Registered for Student Ramit : Course1, Course3
+09:23:03,707  INFO NotificationHandlerImpl,main:18 - Payment successful for student : Ramit
+09:23:19,728  INFO NotificationHandlerImpl,main:36 - Logged in user "Prof1" as Professor at 2021-12-23T09:23:19.728
+09:23:44,655  INFO NotificationHandlerImpl,main:36 - Logged in user "Ramit" as Student at 2021-12-23T09:23:44.655

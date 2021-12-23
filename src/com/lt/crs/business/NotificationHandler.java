@@ -39,4 +39,10 @@ public interface NotificationHandler {
 	 * Send Notification to student after course registration.
 	 */
 	public void courseRegistrationNotification(String username, String registerd);
+	
+	/**
+	 * @param username
+	 * Send Notification to user after login.
+	 */
+	public void updatePasswordNotification(String username);
 }
