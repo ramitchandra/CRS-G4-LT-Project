@@ -45,4 +45,9 @@ public interface NotificationHandler {
 	 * Send Notification to user after login.
 	 */
 	public void updatePasswordNotification(String username);
+	
+	/**
+	 * Send Notification to student about course limit.
+	 */
+	public void courseLimitNotification();
 }

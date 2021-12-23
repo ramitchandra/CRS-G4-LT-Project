@@ -79,3 +79,14 @@
 09:23:03,707  INFO NotificationHandlerImpl,main:18 - Payment successful for student : Ramit
 09:23:19,728  INFO NotificationHandlerImpl,main:36 - Logged in user "Prof1" as Professor at 2021-12-23T09:23:19.728
 09:23:44,655  INFO NotificationHandlerImpl,main:36 - Logged in user "Ramit" as Student at 2021-12-23T09:23:44.655
+12:09:01,984  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Naman
+12:09:11,842  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-23T12:09:11.841
+12:09:16,231  INFO NotificationHandlerImpl,main:30 - User id 1 is approved
+12:09:29,112  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:09:29.112
+12:12:10,074  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:12:10.070
+12:14:08,320  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:14:08.318
+12:14:50,587 ERROR StudentCRSMenu,main:168 - Max course count is 6
+12:19:23,307  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:19:23.304
+12:20:01,219 ERROR StudentCRSMenu,main:168 - Max course count is 6
+12:24:33,649  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:24:33.646
+12:25:54,179 ERROR NotificationHandlerImpl,main:53 - Max course count is 6

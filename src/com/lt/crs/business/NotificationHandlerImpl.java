@@ -48,5 +48,10 @@ public class NotificationHandlerImpl implements NotificationHandler{
 		logger.info("Password Updated Successfully for: "+username);
 	}
 
+	@Override
+	public void courseLimitNotification() {
+		logger.error("Max course count is 6");
+	}
+
 	
 }

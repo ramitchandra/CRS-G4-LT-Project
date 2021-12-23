@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.lt.crs.bean.Course;
+import com.lt.crs.business.NotificationHandler;
+import com.lt.crs.business.NotificationHandlerImpl;
 import com.lt.crs.business.StudentHandler;
 import com.lt.crs.business.StudentHandlerImpl;
 import com.lt.crs.constants.SqlConstants;
@@ -159,7 +161,14 @@ public class StudentCRSMenu {
 									
 								try{
 									if(coursesEnrolled.indexOf(courseName)== -1){
-										coursesEnrolled.append(courseName);
+										if(coursesEnrolled.toString().split(",").length<6){
+											coursesEnrolled.append(courseName);
+										}else {
+											NotificationHandler nh= new NotificationHandlerImpl();
+											nh.courseLimitNotification();
+											coursesEnrolled= new StringBuilder(coursesEnrolled.substring(0, coursesEnrolled.length()-1));
+											}
+											
 									}else {
 										throw new DuplicateCourseNameException ("Course Name Already Exists!!");
 									}
