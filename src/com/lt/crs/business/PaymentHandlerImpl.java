@@ -20,7 +20,7 @@ public class PaymentHandlerImpl implements PaymentHandler {
 		String amountToPaid = sc.next();
 		NotificationHandler nh = new NotificationHandlerImpl();
 		if (paymentsDao.makePayment(studentUsername, amountToPaid)) {
-			nh.registrationSuccessfulNotification(studentUsername);
+			nh.paymentSuccessfulNotification(studentUsername);
 		} else {
 			nh.paymentDeclinedNotification(studentUsername);
 		}

@@ -87,6 +87,7 @@ public class MainCRSMenu {
 			System.out.println("Under dev");
 		} else {
 			System.out.println("Invalid input");
+			mainMenu();
 		}
 		
 	}
